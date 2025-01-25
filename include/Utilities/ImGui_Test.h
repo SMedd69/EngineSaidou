@@ -5,7 +5,7 @@
     #include <Imgui/imgui.h>
     #include <Imgui/backends/imgui_impl_glfw.h>
     #include <Imgui/backends/imgui_impl_opengl3.h>
-    #include <Utilities/Color.h>
+    #include <Utilities/ColorEngine.h>
     #include <vector>
 
     class ImGUITest
@@ -13,7 +13,7 @@
     public:
         ImGUITest(GLFWwindow* window, bool running);
         void Init();
-        void Run(float customColor[4], Vector4 colorBackGround, float camPos[3], float camRot[3], float windowWidth, float windowHeight);
+        void Run(float customColor[4], Vector4 colorBackGround, float camPos[3], float camRot[3], float windowWidth, float windowHeight, float* light, float ambientColor[4], float diffuseColor[4], float specularColor[4]);
 
         void SetRunning(bool running);
         bool GetRunning()const;

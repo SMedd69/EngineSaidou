@@ -8,3 +8,8 @@ Light::Light()
     m_intensity = 1.0f;
     m_lightType = LightType::Directional;
 }
+
+void Light::SetIntensity(const float& intensity)
+{
+    m_intensity = intensity;
+}

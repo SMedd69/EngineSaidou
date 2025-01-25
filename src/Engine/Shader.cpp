@@ -118,10 +118,23 @@ void Shader::SetUniformVector4D(std::string name, Vector4 value)
     glUniform4f(location, value.m_x, value.m_y, value.m_z, value.m_w);
 }
 
+void Shader::SetUniformColor(std::string name, Color value)
+{
+	UseShader();
+	int location = glGetUniformLocation(m_shaderProgram, name.c_str());
+	glUniform4f(location, value.m_r, value.m_g, value.m_b, value.m_a);
+}
+
 void Shader::SetUniformVector2D(std::string name, Vector2 value)
 {
-    int location = glGetUniformLocation(m_shaderProgram, name.c_str());
-    glUniform2f(location, value.m_x, value.m_y);
+	int location = glGetUniformLocation(m_shaderProgram, name.c_str());
+	glUniform2f(location, value.m_x, value.m_y);
+}
+
+void Shader::SetUniformVector3D(std::string name, Vector3 value)
+{
+	int location = glGetUniformLocation(m_shaderProgram, name.c_str());
+	glUniform3f(location, value.m_x, value.m_y, value.m_z);
 }
 
 void Shader::SetUniformFloat(std::string name, float value)
@@ -130,7 +143,13 @@ void Shader::SetUniformFloat(std::string name, float value)
     glUniform1f(location, value);
 }
 
-void Shader::setUniformMatrix3x3(std::string name, Matrix3x3 value)
+void Shader::SetUniformInt(std::string name, int value)
+{
+	int location = glGetUniformLocation(m_shaderProgram, name.c_str());
+	glUniform1i(location, value);
+}
+
+void Shader::SetUniformMatrix3x3(std::string name, Matrix3x3 value)
 {
     int location = glGetUniformLocation(m_shaderProgram, name.c_str());
     glUniformMatrix3fv(location, 1, GL_FALSE, value.GetAsArray().data());

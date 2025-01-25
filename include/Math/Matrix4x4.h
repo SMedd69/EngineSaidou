@@ -6,6 +6,7 @@
     #include <Math/Vector3.h>
     #include <Math/Vector4.h>
 	#include <Math/Quaternion.h>
+	#include <Math/Matrix3x3.h>
     #include <array>
 
     struct Matrix4x4
@@ -33,6 +34,7 @@ public:
 	Matrix4x4& operator *=(const Matrix4x4& b);
 	bool operator==(const Matrix4x4& value)const;
 	bool operator!=(const Matrix4x4& value)const;
+	operator Matrix3x3()const;
 
 
 	Matrix4x4 Transpose()const;

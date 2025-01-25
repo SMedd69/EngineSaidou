@@ -36,6 +36,9 @@
             Texture(std::string filePath);
             ~Texture();
 
+            void Bind(int textureIndex);
+	        void Unbind(int textureIndex);
+
             void UseTexture();
             void SetWrapHorizontal(Wrap wrap);
             void SetWrapVertical(Wrap wrap);
@@ -66,7 +69,7 @@
             float GetMaxGPUAnisotropy()const;
 
         private:
-            const unsigned char* LoadTexture(std::string filePath);
+            unsigned char* LoadTexture(std::string filePath);
             void GenerateTextureID();
             void UpdateTextureData(const unsigned char* data);
 
@@ -86,7 +89,7 @@
             int m_mipMapMaxLevel = 1000;
             int m_mipMapMinLod = -1000;
             int m_mipMapMaxLod = 1000;
-            int m_mipMapLodBias = 0;
+            int m_mipMapLodBias = 16;
     };
 
 #endif // !__TEXTURE_H__

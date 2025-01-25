@@ -25,6 +25,7 @@ struct VertexAttribute
 public:
 	Vector3 m_position;
 	Vector2 m_uv;
+	Vector3 m_normal;
 };
 
 class Mesh
@@ -44,17 +45,21 @@ public:
 	void SetVertices(std::vector<Vector3> vertices);
 	void SetIndices(std::vector<unsigned int> indices);
 	void SetUVs(std::vector<Vector2> uvs);
+	void SetNormals(std::vector<Vector3> normals);
 
 	// Getters
 	std::vector<Vector3> GetVertices()const;
 	std::vector<Vector2> GetUVs()const;
+	std::vector<Vector3> GetNormals()const;
 	std::vector<unsigned int> GetIndices()const;
 	void UseMesh();
+	void ComputeNormals();
 
 private:
 	std::vector<Vector3> m_vertices;
 	std::vector<unsigned int> m_indices;
 	std::vector<Vector2> m_uvs;
+	std::vector<Vector3> m_normals;
 
 	GLuint m_vao;
 	void GenerateVAO();
@@ -71,6 +76,8 @@ private:
 	GLuint m_ebo;
 	void GenerateEBO();
 	void ConfigureEBO();
+
+	void ConfigureNormalsBuffer();
 	
 	void SetupVertexAttribs(GLuint index, int vboIndex, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);
 

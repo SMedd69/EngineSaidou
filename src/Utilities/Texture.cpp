@@ -3,8 +3,9 @@
 Texture::Texture(std::string filePath)
 {
     GenerateTextureID();
-    const unsigned char* data = LoadTexture(filePath);
+    unsigned char* data = LoadTexture(filePath);
     UpdateTextureData(data);
+    stbi_image_free(data);
 }
 
 Texture::~Texture()
@@ -12,13 +13,13 @@ Texture::~Texture()
 
 }
 
-const unsigned char* Texture::LoadTexture(std::string filePath)
+unsigned char* Texture::LoadTexture(std::string filePath)
 {
     int channel_in_file = 0;
-    int desired_channels = 0;
+    int desired_channels = 4;
 
     stbi_set_flip_vertically_on_load(1);
-    const unsigned char* data = stbi_load(filePath.c_str(), &m_width, &m_height, &channel_in_file, desired_channels);
+    unsigned char* data = stbi_load(filePath.c_str(), &m_width, &m_height, &channel_in_file, desired_channels);
 
     if (data)
     {
@@ -75,6 +76,19 @@ void Texture::SetMipMapTexture(int level, std::string filePath)
     glTexImage2D(GL_TEXTURE_2D, level, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
     stbi_image_free(data);
+}
+
+void Texture::Bind(int textureIndex)
+{
+	glActiveTexture(GL_TEXTURE0 + textureIndex);
+	glBindTexture(GL_TEXTURE_2D, m_textureID);
+}
+
+
+void Texture::Unbind(int textureIndex)
+{
+	glActiveTexture(GL_TEXTURE0 + textureIndex);
+	glBindTexture(GL_TEXTURE_2D, m_textureID);
 }
 
 void Texture::UseTexture()
@@ -196,7 +210,7 @@ void Texture::SetAnisotropy(float anisotropyValue)
     m_anisotropyValue = anisotropyValue > maxAnisotropy ? maxAnisotropy : anisotropyValue;
 
     glBindTexture(GL_TEXTURE_2D, m_textureID);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY, (GLfloat)m_anisotropyValue);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY, m_anisotropyValue);
 }
 
 float Texture::GetAnisotropy()const

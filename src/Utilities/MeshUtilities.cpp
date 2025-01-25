@@ -94,6 +94,8 @@ Mesh* MeshUtilities::CreateCube(float size)
     mesh->SetIndices(indices);
     mesh->SetUVs(uvs);
 
+    mesh->ComputeNormals();
+
     return mesh;
 }
 
@@ -147,6 +149,8 @@ Mesh* MeshUtilities::CreateCustomCuveUV(float size, CubeUVInfo cubeUVInfo)
     uvs.push_back(facePosition + Vector2(halfFaceUVSize, halfFaceUVSize));
 
     mesh->SetUVs(uvs);
+
+    mesh->ComputeNormals();
     return mesh;
 }
 
@@ -172,6 +176,7 @@ Mesh* MeshUtilities::CreateRectangle(float width, float height)
 
     mesh->SetVertices(vertices);
     mesh->SetIndices(indices);
+    mesh->ComputeNormals();
     return mesh;
 }
 
@@ -198,6 +203,7 @@ Mesh* MeshUtilities::CreateRegularConvexPolygon(int sideCount, float radius)
 
     mesh->SetVertices(vertices);
     mesh->SetIndices(indices);
+    mesh->ComputeNormals();
     return mesh;
 }
 
@@ -230,6 +236,8 @@ Mesh* MeshUtilities::CreateCircle(float radius)
 
     mesh->SetVertices(vertices);
     mesh->SetIndices(indices);
+
+    mesh->ComputeNormals();
     return mesh;
 }
 
@@ -263,6 +271,8 @@ Mesh* MeshUtilities::CreateGrid(int widthTileCount, int heightTileCount)
 
     mesh->SetVertices(vertices);
     mesh->SetIndices(indices);
+
+    mesh->ComputeNormals();
     return mesh;
 }
 
@@ -397,6 +407,8 @@ Mesh* MeshUtilities::CreateRoundedCube(float size, float radius, int subdivision
     mesh->SetIndices(indices);
     mesh->SetUVs(uvs);
 
+    mesh->ComputeNormals();
+
     return mesh;
 }
 
@@ -510,6 +522,8 @@ Mesh* MeshUtilities::CreateGeodesicSphere(float radius, int subdivisions)
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
 
+    mesh->ComputeNormals();
+
     return mesh;
 }
 
@@ -561,6 +575,8 @@ Mesh* MeshUtilities::CreateUVSphere(float radius, int segments, int rings)
     mesh->SetVertices(vertices);
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
+
+    mesh->ComputeNormals();
 
     return mesh;
 }
@@ -651,6 +667,7 @@ Mesh* MeshUtilities::CreateCylinder(float radius, int segments, float height)
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
 
+    mesh->ComputeNormals();
     return mesh;
 }
 
@@ -690,6 +707,7 @@ Mesh* MeshUtilities::CreateCustomCylinderUV(float radius, int segments, float he
     }
 
     mesh->SetUVs(uvs);
+    mesh->ComputeNormals();
 
     return mesh;    
 }
@@ -780,6 +798,8 @@ Mesh* MeshUtilities::CreateCone(float radius1, float radius2, int segments, floa
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
 
+    mesh->ComputeNormals();
+
     return mesh;
 }
 
@@ -833,6 +853,8 @@ Mesh* MeshUtilities::CreateTorus(float radius, float radius2, int segments, int 
     mesh->SetVertices(vertices);
     mesh->SetIndices(indices);
     mesh->SetUVs(uvs);
+
+    mesh->ComputeNormals();
 
     return mesh;
 }
@@ -980,6 +1002,8 @@ Mesh* MeshUtilities::CreateCapsule(float radius, float height, int segments, int
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
 
+    mesh->ComputeNormals();
+
     return mesh;
 }
 
@@ -1021,6 +1045,8 @@ Mesh* MeshUtilities::CreatePyramid(float size)
     mesh->SetIndices(indices);
     mesh->SetUVs(uvs);
 
+    mesh->ComputeNormals();
+
     return mesh;
 }
 
@@ -1060,6 +1086,7 @@ Mesh* MeshUtilities::CreatePrism(float size, int sides)
 
     mesh->SetVertices(vertices);
     mesh->SetIndices(indices);
+    mesh->ComputeNormals();
 
     return mesh;
 }
@@ -1096,7 +1123,7 @@ Mesh* MeshUtilities::CreatePlane(float size)
     mesh->SetVertices(vertices);
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
-
+    mesh->ComputeNormals();
     return mesh;
 }
 
@@ -1207,7 +1234,7 @@ Mesh* MeshUtilities::CreateStaircase(float width, float stepHeight, float stepDe
     mesh->SetVertices(vertices);
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
-
+    mesh->ComputeNormals();
     return mesh;
 }
 
@@ -1255,6 +1282,7 @@ Mesh* MeshUtilities::CreateWaterMesh(int width, int height, float tileSize, floa
     mesh->SetVertices(vertices);
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
+    mesh->ComputeNormals();
 
     return mesh;
 }
@@ -1327,8 +1355,8 @@ Mesh* MeshUtilities::CreateTerrainMesh(int width, int height, float tileSize, fl
     mesh->SetVertices(vertices);
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
-
-    return mesh;    
+    mesh->ComputeNormals();
+    return mesh;
 }
 
 Mesh* MeshUtilities::CreateProceduralTerrain(int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength)
@@ -1385,7 +1413,7 @@ Mesh* MeshUtilities::CreateProceduralTerrain(int width, int height, float tileSi
     mesh->SetVertices(vertices);
     mesh->SetIndices(indices);
     mesh->SetUVs(uvs);
-
+    mesh->ComputeNormals();
     return mesh; // Retourner le mesh généré
 }
 

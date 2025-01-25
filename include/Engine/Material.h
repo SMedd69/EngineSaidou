@@ -9,6 +9,10 @@ class Material
         Material();
         Material(Texture* ambientTexture, Texture* diffuseTexture, Texture* specularTexture, Color ambientColor, Color diffuseColor, Color specularColor, float shininess = 32.0f);
 
+        void SetAmbientColor(const Color& color);
+        void SetDiffuseColor(const Color& color);
+        void SetSpecularColor(const Color& color);
+
         Color m_ambientColor;
         Color m_diffuseColor;
         Color m_specularColor;

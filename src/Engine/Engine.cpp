@@ -7,6 +7,42 @@ Engine::Engine(bool running):
     Run(m_Running);
 }
 
+int Engine::CreateCube(Vector3 position, Quaternion rotation, Vector3 scale, Mesh* mesh, Shader* shader, Material* material, Texture* texture, std::vector<Transform>& transforms, std::vector<MeshRenderer*>& meshRenderers)
+{
+	Transform cubeTransform = Transform(position, scale, rotation);
+	MeshRenderer* cubeRenderer = new MeshRenderer(mesh, cubeTransform, shader, material, texture);
+	transforms.push_back(cubeTransform);
+	meshRenderers.push_back(cubeRenderer);
+
+	return meshRenderers.size()-1;
+}
+
+void Engine::SetRotation(int index, Quaternion rotation, std::vector<MeshRenderer*> meshRenderers)
+{
+	Transform tr = meshRenderers[index]->GetTransform();
+	tr.SetRotation(rotation);
+	meshRenderers[index]->SetTransform(tr);
+}
+
+void Engine::SetPosition(int index, Vector3 position, std::vector<MeshRenderer*> meshRenderers)
+{
+	Transform tr = meshRenderers[index]->GetTransform();
+	tr.SetPosition(position);
+	meshRenderers[index]->SetTransform(tr);
+}
+
+Vector3 Engine::GetPosition(int index, std::vector<MeshRenderer*> meshRenderers)
+{
+	Transform tr = meshRenderers[index]->GetTransform();
+	return tr.GetPosition();
+}
+
+Quaternion Engine::GetRotation(int index, std::vector<MeshRenderer*> meshRenderers)
+{
+	Transform tr = meshRenderers[index]->GetTransform();
+	return tr.GetRotation();
+}
+
 void Engine::Run(bool running)
 {
     Logger& logger = InitLogger();
@@ -14,21 +50,28 @@ void Engine::Run(bool running)
     // Log du démarrage avec dessin
     PrintStartBanner();
 
+    std::vector<Mesh*> meshes;
+	std::vector<Transform> transforms;
+	std::vector<MeshRenderer*> meshRenderers;
+	std::vector<Texture*> textures;
+	std::vector<Material*> materials;
+	std::vector<Light*> lights;
+
     Window* window = new Window(780, 450, "OpenGL");
 
     ImGUITest* imGuiTest = new ImGUITest(window->GetWindow(), running);
 
-    Vector4 colorBackGround = Color::Orange().ToVector4();
+    Vector4 colorBackGround = ColorEngine::Orange().ToVector4();
     float customColor[4] = { colorBackGround.m_x, colorBackGround.m_y, colorBackGround.m_z, colorBackGround.m_w};
     
 
     #pragma region ShadersAndCamera
 
-    const char* vsFilename = "assets/shaders/default_vertex_shader.vert";
+    const char* vsFilename = "assets/shaders/BlinnPhongShader.vert";
     std::string vertexShaderSourceString = FileSystem::get_file_content(vsFilename);
     const char* vertexShaderSource = vertexShaderSourceString.c_str();
 
-    const char* fsFilename = "assets/shaders/default_fragment_shader.frag";
+    const char* fsFilename = "assets/shaders/BlinnPhongShader.frag";
     std::string fragmentShaderSourceString = FileSystem::get_file_content(fsFilename);
     const char* fragmentShaderSource = fragmentShaderSourceString.c_str();
 
@@ -43,16 +86,15 @@ void Engine::Run(bool running)
     #pragma endregion
 
     #pragma region MESHES
-    
-    std::vector<Mesh*> meshes;
-    std::vector<Transform> transforms;
-    std::vector<MeshRenderer*> meshRenderers;
+
     Texture* m_texture2 = new Texture("assets/textures/RedTiles/Red_Tiles_DIFF.jpg");
     m_texture2->SetAnisotropy(.5f);
+    textures.push_back(m_texture2);
     Texture* m_texture = new Texture("assets/textures/Rock/Rock_DIFF.png");
     m_texture->SetAnisotropy(.5f);
+    textures.push_back(m_texture);
 
-    Mesh* cubeMesh = MeshUtilities::CreateCube(1.0f);
+    /* Mesh* cubeMesh = MeshUtilities::CreateCube(1.0f);
     Transform cubeTransform = Transform(Vector3(0.0f, 0.0f, 0.0f), Vector3(1.0f, 1.0f, 1.0f), Vector3(1.0f, 1.0f, 1.0f));
     MeshRenderer* cubeRenderer = new MeshRenderer(cubeMesh, cubeTransform, shader, m_texture, Vector2(1.0f, 1.0f), Vector2(0.0f, 0.0f));
     meshes.push_back(cubeMesh);
@@ -120,7 +162,29 @@ void Engine::Run(bool running)
     MeshRenderer* capsuleRenderer = new MeshRenderer(capsuleMesh, capsuleTransform, shader, m_texture, Vector2(1.0f, 1.0f), Vector2(0.0f, 0.0f));
     meshes.push_back(capsuleMesh);
     transforms.push_back(capsuleTransform);
-    meshRenderers.push_back(capsuleRenderer);
+    meshRenderers.push_back(capsuleRenderer); */
+
+    Mesh* cubeMesh = MeshUtilities::CreateCube(1.0f);
+    Transform cubeTransform = Transform();
+    Vector3 positionCube{0.0f, .5f, 10.f};
+    cubeTransform.SetPosition(positionCube);
+    
+    // Color ambientColor, Color diffuseColor, Color specularColor
+    float ambientColor[4] = {1.0f, 0.0f, 0.0f, 1.0f};
+    float diffuseColor[4] = {1.0f, 0.0f, 0.0f, 1.0f};
+    float specularColor[4] = {1.0f, 1.0f, 1.0f, 1.0f};
+
+    Material* materialCube = new Material(m_texture, m_texture, m_texture, {ambientColor[0], ambientColor[1], ambientColor[2], ambientColor[3]}, {diffuseColor[0], diffuseColor[1], diffuseColor[2], diffuseColor[3]}, {specularColor[0], specularColor[1], specularColor[2], specularColor[3]});
+    MeshRenderer* meshCube = new MeshRenderer(cubeMesh, cubeTransform, shader, materialCube, m_texture2);
+
+    meshes.push_back(cubeMesh);
+    transforms.push_back(cubeTransform);
+    meshRenderers.push_back(meshCube);
+
+    DirectionalLight* directionalLight = new DirectionalLight();
+    LightingSettings* lightSett = new LightingSettings();
+
+    float lightIntensity;
 
     #pragma endregion
 
@@ -128,7 +192,7 @@ void Engine::Run(bool running)
     Vector3 cameraRelativePosition = Vector3(0.0f,0.0f,-5.0f);
     float* camPos = new float[3] {cameraRelativePosition.m_x, cameraRelativePosition.m_y, cameraRelativePosition.m_z};
     float* camRot = new float[3] {0, 0, 0};
-    
+
     glEnable(GL_DEPTH_TEST);
 
     // Dans la boucle principale, juste avant de dessiner
@@ -140,25 +204,29 @@ void Engine::Run(bool running)
 
         glfwPollEvents();
 
-        imGuiTest->Run(customColor, colorBackGround, camPos, camRot, window->GetWidth(), window->GetHeight());
+        imGuiTest->Run(customColor, colorBackGround, camPos, camRot, window->GetWidth(), window->GetHeight(), &lightIntensity, ambientColor, diffuseColor, specularColor);
         running = imGuiTest->GetRunning();
-        
 
         // Effacer l'écran avec la nouvelle couleur de fond
-        
+
         // glClearColor(colorBackGround.m_x, colorBackGround.m_y, colorBackGround.m_z, colorBackGround.m_w);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // Dessiner les objets
         for (int i = 0; i < meshRenderers.size(); i++)
         {
-            meshRenderers[i]->Draw(camera, window);
+            meshRenderers[i]->Draw(camera, lights, window);
         }
+
+        directionalLight->SetIntensity(lightIntensity);
+        std::cout << "Intensity: " << directionalLight->m_intensity << std::endl;
+        materialCube->SetAmbientColor({ambientColor[0], ambientColor[1], ambientColor[2], ambientColor[3]});
+        materialCube->SetDiffuseColor({diffuseColor[0], diffuseColor[1], diffuseColor[2], diffuseColor[3]});
+        materialCube->SetSpecularColor({specularColor[0], specularColor[1], specularColor[2], specularColor[3]});
 
         // Rotation de la caméra en mode FPS (First Person Shooter)
         camera->SetPosition(Vector3(camPos[0], camPos[1], camPos[2])); // Appliquer la nouvelle position directement
         camera->SetAngle(Vector3(camRot[0], camRot[1], camRot[2])); // Appliquer la nouvelle position directement
-        
 
         // Rendu ImGui
         ImGui::Render();

@@ -21,6 +21,8 @@ public:
     Color m_diffuseColor;
     Color m_specularColor;
 
+    void SetIntensity(const float& intensity);
+
     float m_intensity = 1.0f;
 
 protected:

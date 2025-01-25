@@ -5,7 +5,7 @@ Mesh::Mesh(bool useOneVBO)
 {
 	GenerateVAO();
 
-	GenerateVBOs(m_useOneVBO == true ? 1 : 2);
+	GenerateVBOs(m_useOneVBO == true ? 1 : 3);
 	GenerateEBO();
 	if(m_useOneVBO == true)
 	{
@@ -15,6 +15,7 @@ Mesh::Mesh(bool useOneVBO)
 	{
 		ConfigureVerticesBuffer();
 		ConfigureUVsBuffer();
+		ConfigureNormalsBuffer();
 	}
 }
 
@@ -23,6 +24,7 @@ Mesh::~Mesh()
 	m_vertices.clear();
 	m_indices.clear();
 	m_uvs.clear();
+	m_normals.clear();
 }
 
 void Mesh::SetVertices(std::vector<Vector3> vertices)
@@ -56,6 +58,33 @@ void Mesh::SetIndices(std::vector<unsigned int> indices)
 {
 	m_indices = indices;
 	ConfigureEBO();
+}
+
+void Mesh::SetNormals(std::vector<Vector3> normals)
+{
+	m_normals = normals;
+	if(m_useOneVBO)
+	{
+		ConfigureVertexAttributesBuffer();
+	}
+	else
+	{
+		ConfigureNormalsBuffer();
+	}
+}
+
+std::vector<Vector3> Mesh::GetNormals()const
+{
+	return m_normals;
+}
+
+void Mesh::ConfigureNormalsBuffer()
+{
+	glBindVertexArray(m_vao);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbos[2]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vector3) * m_normals.size(), m_normals.data(), (int)m_glDrawType);
+
+	SetupVertexAttribs(2, 2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 }
 
 std::vector<Vector3> Mesh::GetVertices()const
@@ -167,4 +196,42 @@ void Mesh::SetupVertexAttribs(GLuint index, int vboIndex, GLint size, GLenum typ
 void Mesh::UseMesh()
 {
 	glBindVertexArray(m_vao);
+}
+
+void Mesh::ComputeNormals()
+{
+	if(m_shapeType == ShapeType::TRIANGLE)
+	{
+		m_normals = std::vector<Vector3>(m_vertices.size());
+		for (int i = 0; i < m_indices.size(); i+=3)
+		{
+			int indice0 = i;
+			int indice1 = i+1;
+			int indice2 = i+2;
+
+			if(indice2 < m_indices.size())
+			{
+				int vertexIndice0 = m_indices[indice0];
+				int vertexIndice1 = m_indices[indice1];
+				int vertexIndice2 = m_indices[indice2];
+
+				Vector3 vertex0 = m_vertices[vertexIndice0];
+				Vector3 vertex1 = m_vertices[vertexIndice1];
+				Vector3 vertex2 = m_vertices[vertexIndice2];
+
+				Vector3 v0v1 = (vertex1 - vertex0).Normalized();
+				Vector3 v1v2 = (vertex2 - vertex1).Normalized();
+
+				Vector3 normal = Vector3::CrossProduct(v0v1, v1v2).Normalized() * -1;
+
+				m_normals[vertexIndice0] = normal;
+				m_normals[vertexIndice1] = normal;
+				m_normals[vertexIndice2] = normal;
+
+				std::cout << "Normal : " << normal << std::endl;
+			}
+		}
+
+		SetNormals(m_normals);
+	}
 }

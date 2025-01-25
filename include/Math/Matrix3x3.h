@@ -5,7 +5,6 @@
     #include <array>
     #include <ostream>
 
-    /// @brief Matrice 3 x 3
     struct Matrix3x3
     {
         public:

@@ -1,5 +1,4 @@
 #include <Math/Matrix4x4.h>
-#include <Math/Matrix3x3.h>
 
 Matrix4x4::Matrix4x4()
 {
@@ -343,6 +342,15 @@ bool Matrix4x4::operator!=(const Matrix4x4& value) const
 		}
 	}
 	return false;
+}
+
+Matrix4x4::operator Matrix3x3()const
+{
+	return Matrix3x3(
+		m[0][0], m[0][1], m[0][2],
+		m[1][0], m[1][1], m[1][2],
+		m[2][0], m[2][1], m[2][2]
+	);
 }
 
 std::ostream& operator<<(std::ostream& os, const Matrix4x4& value)

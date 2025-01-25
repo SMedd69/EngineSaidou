@@ -2,11 +2,12 @@
 
 Matrix3x3::Matrix3x3()
 {
-    
+    m[0][0] = 0.0f; m[0][1] = 0.0f; m[0][2] = 0.0f;
+	m[1][0] = 0.0f; m[1][1] = 0.0f; m[1][2] = 0.0f;
+	m[2][0] = 0.0f; m[2][1] = 0.0f; m[2][2] = 0.0f;
 }
 
-Matrix3x3::Matrix3x3(
-    float m00, float m01, float m02,
+Matrix3x3::Matrix3x3(float m00, float m01, float m02,
     float m10, float m11, float m12,
     float m20, float m21, float m22
 )
@@ -14,6 +15,21 @@ Matrix3x3::Matrix3x3(
     m[0][0] = m00; m[0][1] = m01; m[0][2] = m02;
     m[1][0] = m10; m[1][1] = m11; m[1][2] = m12;
     m[2][0] = m20; m[2][1] = m21; m[2][2] = m22;
+}
+
+Matrix3x3::Matrix3x3(const Matrix3x3& value)
+{
+	m[0][0] = value.m[0][0];
+	m[0][1] = value.m[0][1];
+	m[0][2] = value.m[0][2];
+
+	m[1][0] = value.m[1][0];
+	m[1][1] = value.m[1][1];
+	m[1][2] = value.m[1][2];
+
+	m[2][0] = value.m[2][0];
+	m[2][1] = value.m[2][1];
+	m[2][2] = value.m[2][2];
 }
 
 float& Matrix3x3::operator ()(int i, int j)
