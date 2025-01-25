@@ -56,6 +56,13 @@ add_executable(engine_saidou
     ${SRC_DIR}/Engine/MeshRenderer.cpp
     ${SRC_DIR}/Engine/Camera.cpp
     ${SRC_DIR}/Engine/Transform.cpp
+    ${SRC_DIR}/Engine/Color.cpp
+    ${SRC_DIR}/Engine/Material.cpp
+    ${SRC_DIR}/Engine/Light.cpp
+    ${SRC_DIR}/Engine/LightingSettings.cpp
+    ${SRC_DIR}/Engine/SpotLight.cpp
+    ${SRC_DIR}/Engine/DirectionalLight.cpp
+    ${SRC_DIR}/Engine/PointLight.cpp
 
     ${SRC_DIR}/Utilities/TransformationUtilities.cpp
     ${SRC_DIR}/Utilities/MeshUtilities.cpp
