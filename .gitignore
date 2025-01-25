@@ -27,3 +27,7 @@ build/
 # Systèmes de sauvegarde
 *.bak
 *~
+
+
+# Fichier imgui.ini
+imgui.ini

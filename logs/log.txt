@@ -354,3 +354,123 @@
 
 [INFO] _____________________________
 
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Sat Jan 25 05:32:56 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:39)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:77)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:60)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:39)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:66)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:96)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_DIFF.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[SUCCESS] Texture: assets/textures/Rock/Rock_DIFF.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Sat Jan 25 05:33:13 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Sat Jan 25 05:43:33 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:39)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:77)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:60)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:39)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:66)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:96)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_DIFF.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[SUCCESS] Texture: assets/textures/Rock/Rock_DIFF.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Sat Jan 25 05:44:00 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Sat Jan 25 05:46:25 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:39)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:77)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:60)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:39)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:66)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:96)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_DIFF.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[SUCCESS] Texture: assets/textures/Rock/Rock_DIFF.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Sat Jan 25 05:47:00 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Sat Jan 25 05:50:39 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:39)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:77)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:60)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:39)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:66)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:96)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_DIFF.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[SUCCESS] Texture: assets/textures/Rock/Rock_DIFF.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Sat Jan 25 05:50:54 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Sat Jan 25 05:51:15 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:39)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:77)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:60)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:39)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:66)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:96)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_DIFF.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[SUCCESS] Texture: assets/textures/Rock/Rock_DIFF.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:26)
+[INFO] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:60)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Sat Jan 25 05:51:36 2025
+
+[INFO] _____________________________
+

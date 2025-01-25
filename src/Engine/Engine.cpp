@@ -140,7 +140,7 @@ void Engine::Run(bool running)
 
         glfwPollEvents();
 
-        imGuiTest->Run(customColor, colorBackGround, camPos, camRot);
+        imGuiTest->Run(customColor, colorBackGround, camPos, camRot, window->GetWidth(), window->GetHeight());
         running = imGuiTest->GetRunning();
         
 

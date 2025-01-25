@@ -13,7 +13,7 @@
     public:
         ImGUITest(GLFWwindow* window, bool running);
         void Init();
-        void Run(float customColor[4], Vector4 colorBackGround, float camPos[3], float camRot[3]);
+        void Run(float customColor[4], Vector4 colorBackGround, float camPos[3], float camRot[3], float windowWidth, float windowHeight);
 
         void SetRunning(bool running);
         bool GetRunning()const;
