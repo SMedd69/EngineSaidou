@@ -1,0 +1,29 @@
+# Fichiers générés par CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+build/
+*.ninja
+*.vcxproj*
+*.sln
+
+# Binaires et librairies compilées
+*.obj
+*.o
+*.a
+*.lib
+*.so
+*.dll
+*.exe
+
+# Logs
+*.log
+
+# Fichiers spécifiques à VSCode
+.vscode/
+*.code-workspace
+
+# Systèmes de sauvegarde
+*.bak
+*~
