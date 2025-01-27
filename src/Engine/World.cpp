@@ -50,22 +50,19 @@ World::~World()
 void World::InitAssets()
 {
 	//Initialise Shader
-	Shader* shader = AssetsManager::CreateShader("BlinnPhongShader", "Assets/BlinnPhongShader.vert", "Assets/BlinnPhongShader.frag");
+	Shader* shader = AssetsManager::CreateShader("BlinnPhongShader", "assets/shaders/BlinnPhongShader.vert", "assets/shaders/BlinnPhongShader.frag");
 
 	//Initialise Textures
-	Texture* cubeTexture = AssetsManager::CreateTexture("CubeFaceTexture","Assets/CubeTextureFace.png");
-	Texture* cubeSpecularTexture = AssetsManager::CreateTexture("CubeSpecularTexture","Assets/CubeTextureSpecular.png");
+	Texture* cubeTexture = AssetsManager::CreateTexture("CubeFaceTexture","assets/textures/RedTiles/Red_Tiles_DIFF.jpg");
+	Texture* cubeSpecularTexture = AssetsManager::CreateTexture("CubeSpecularTexture","assets/textures/RedTiles/Red_Tiles_SPEC.jpg");
 
 	//Initialise Mesh
-	Mesh* cubeMesh = MeshUtilities::CreateCustomCuveUV("CubeMesh", 1.0f, MeshUtilities::CubeUVInfo());
+	Mesh* cubeMesh = MeshUtilities::CreateCustomCuveUV("CubeMesh", .1f, MeshUtilities::CubeUVInfo());
+	Mesh* cylinderMesh = MeshUtilities::CreateCylinder("CylinderMesh", .5f, 24, 2.0f);
 
 	//Initialise Materials
 	Material* material = AssetsManager::CreateMaterial("Material0", cubeTexture, cubeTexture, cubeSpecularTexture, Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1),32);
 	Material* material2 = AssetsManager::CreateMaterial("Material1", cubeTexture, cubeTexture, cubeSpecularTexture, Color(0, 1, 0, 1), Color(0, 1, 0, 1), Color(1, 1, 0, 1), 32);
-	Material* material3 = AssetsManager::CreateMaterial("Material2", cubeTexture, cubeTexture, cubeSpecularTexture, Color(0, 0, 1, 1), Color(0, 0, 1, 1), Color(1, 1, 1, 1), 32);
-	Material* material4 = AssetsManager::CreateMaterial("Material3", cubeTexture, cubeTexture, cubeSpecularTexture, Color(0, 1, 1, 1), Color(0, 1, 1, 1), Color(1, 1, 1, 1), 32);
-	Material* material5 = AssetsManager::CreateMaterial("Material4", cubeTexture, cubeTexture, cubeSpecularTexture, Color(1, 0, 1, 1), Color(1, 0, 1, 1), Color(1, 1, 1, 1), 32);
-	
 }
 
 void World::InitWorld()
@@ -81,33 +78,24 @@ void World::InitWorld()
 		Camera* cameraComponent = cameraEntity->AddComponent<Camera>();
 		cameraComponent->SetPosition(cameraPosition);
 		cameraComponent->SetAngle(cameraAngles);
-		cameraComponent->SetProjectionMode(Camera::EProjectionMode::PERSPECTIVE);
-		cameraComponent->SetFov(60);
+		cameraComponent->SetProjectionMode(Camera::EProjectionMode::ORTHOGRAPHIC);
+		cameraComponent->SetFov(75);
 	}
 
 	//Intialise Cornell Box Entities
 
-	std::vector<Vector3> entitiesPosition = std::vector<Vector3>{ Vector3(0.0f, -3.0f, 0.0f),
-																	Vector3(0.0f, 3.0f, 0.0f),
-																	Vector3(3.0f,  0.0f, 0.0f),
-																	Vector3(-3.0f,  0.0f, 0.0f),
-																	Vector3(0.0f, 0.0f, 3.0f)};
+	std::vector<Vector3> entitiesPosition = std::vector<Vector3>{ Vector3(0.0f, 0.5f, 5.0f),
+																	Vector3(0.0f, 0.0f, 5.0f)};
 
-	std::vector<Vector3> entitiesScale = std::vector<Vector3>{ Vector3(6.0f, 0.01f, 6.0f),
-																Vector3(6.0f, 0.01f, 6.0f),
-																Vector3(0.01f, 6.0f, 6.0f),
-																Vector3(0.01f, 6.0f, 6.0f),
-																Vector3(6.0f, 6.0f, 0.01f) };
+	std::vector<Vector3> entitiesScale = std::vector<Vector3>{ Vector3(1.0f, 1.0f, 1.0f),
+																Vector3(1.0f, 1.0f, 1.0f)};
 
 	std::vector<Quaternion> entitiesRotation = std::vector<Quaternion>{ Quaternion::AxisAngle(Vector3::Right,180),
-																	 Quaternion::AxisAngle(Vector3::Right,180),
-																	 Quaternion::AxisAngle(Vector3::Up, 180),
-																	 Quaternion::AxisAngle(Vector3::Up, 180),
-																	 Quaternion::Identity() };
+																	 Quaternion::AxisAngle(Vector3::Forward,90)};
 	
 	LightingSettings::m_globalAmbiantColor = Color(0.5, 0.5, 0.5, 1.0f);
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		Entity* cubeEntity = CreateEntity<Entity>();
 		{
@@ -117,7 +105,7 @@ void World::InitWorld()
 			transformComponent->SetScale(entitiesScale[i]);
 
 			MeshRenderer* meshRendererComponent = cubeEntity->AddComponent<MeshRenderer>();
-			meshRendererComponent->SetMesh(AssetsManager::GetAsset<Mesh>("CubeMesh"));
+			meshRendererComponent->SetMesh(AssetsManager::GetAsset<Mesh>( i < 1 ? "CubeMesh" : "CylinderMesh"));
 			meshRendererComponent->SetTransform(transformComponent);
 			meshRendererComponent->SetShader(AssetsManager::GetAsset<Shader>("BlinnPhongShader"));
 			meshRendererComponent->SetMaterial(AssetsManager::GetAsset<Material>("Material" + std::to_string(i)));

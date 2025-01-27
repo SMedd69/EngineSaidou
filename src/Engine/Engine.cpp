@@ -1,4 +1,5 @@
 #include <Engine/Engine.h>
+#include <Engine/World.h>
 #include <ctime>
 
 Engine::Engine(bool running):
@@ -17,8 +18,13 @@ void Engine::Run(bool running)
     Window* window = new Window(780, 450, "OpenGL");
 
     ImGUITest* imGuiTest = new ImGUITest(window->GetWindow(), running);
-
     glEnable(GL_DEPTH_TEST);
+
+    World* world = World::Instance();
+    world->InitWorld();
+
+    float cameraAngle = 0.0f;
+    float stepLight = 1.0f;
 
     // Dans la boucle principale, juste avant de dessiner
     while (!glfwWindowShouldClose(window->GetWindow()) && running)
@@ -26,6 +32,9 @@ void Engine::Run(bool running)
         // Effacer l'écran
         glClearColor(0.3f, 0.3f, 0.3f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        world->Update();
+        world->Display(window);
 
         glfwSwapBuffers(window->GetWindow());
         glfwPollEvents();
