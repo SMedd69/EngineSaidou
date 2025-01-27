@@ -1,11 +1,22 @@
 #ifndef __CAMERA_H__
     #define __CAMERA_H__
 
-    #include <Math/Matrix4x4.h>
+    #include <Math/Vector3.h>
     #include <Math/Vector2.h>
+    #include <Math/Matrix4x4.h>
+    #include <Engine/Component.h>
 
-    class Camera
+    class Camera : public Component
     {
+        public:
+        enum class EProjectionMode
+        {
+            PERSPECTIVE,
+            ORTHOGRAPHIC
+        };
+        Camera(Vector3 position, Vector3 angle, float size, bool isPerspective = true, bool isHorizontal = true);
+        Camera() {};
+
         private:
             Vector3 m_position;
             Vector3 m_angle;
@@ -16,9 +27,12 @@
 
             float m_near = 0.1f;
             float m_far = 1000.0f;
+        
+        protected:
 
         public:
-            Camera(Vector3 position, Vector3 angle, float size, bool isPerspective = true, bool isHorizontal = true);
+            void SetProjectionMode(EProjectionMode _projectionMode);
+
             void SetPosition(const Vector3& position);
             void SetAngle(const Vector3& angle);
             void SetSize(float size);

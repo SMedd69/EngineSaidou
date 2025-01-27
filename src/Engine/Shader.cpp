@@ -1,9 +1,12 @@
 #include <Engine/Shader.h>
 
-Shader::Shader(const char* vertexShaderSource,const  char* fragmentShaderSource)
+
+Shader::Shader(std::string vertexShaderFilePath,std::string fragmentShaderFilePath)
 {
-    int vertexShaderIndex = ConfigureVertexShader(vertexShaderSource);
-    int fragmentShaderIndex = ConfigureFragmentShader(fragmentShaderSource);
+    std::string vertexShaderSource = FileSystem::get_file_content(vertexShaderFilePath);
+    std::string fragmentShaderSource = FileSystem::get_file_content(fragmentShaderFilePath);
+    int vertexShaderIndex = ConfigureVertexShader(vertexShaderSource.c_str());
+    int fragmentShaderIndex = ConfigureFragmentShader(fragmentShaderSource.c_str());
     ConfigureShaderProgram(vertexShaderIndex, fragmentShaderIndex);
 }
 

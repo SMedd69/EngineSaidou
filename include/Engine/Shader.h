@@ -9,11 +9,14 @@
     #include <Math/Matrix4x4.h>
     #include <Engine/Color.h>
     #include <string>
+    #include <Engine/Shader.h>
+    #include <Engine/Assets.h>
+    #include <Utilities/FileSystem.h>
 
-    class Shader
+    class Shader : public Assets
     {
         public:
-        Shader(const char* vertexShaderSource,const char* fragmentShaderSource);
+        Shader(std::string vertexShaderFilePath,std::string fragmentShaderFilePath);
         void UseShader();
         void SetUniformVector2D(std::string name, Vector2 value);
         void SetUniformVector3D(std::string name, Vector3 value);

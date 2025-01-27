@@ -1,7 +1,7 @@
 #include <Utilities/FileSystem.h>
 #include "FileSystem.h"
 
-std::string FileSystem::get_file_content(const char *filename)
+std::string FileSystem::get_file_content(std::string filename)
 {
     std::ifstream in(filename, std::ios::in | std::ios::binary);
     if(in)

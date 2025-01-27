@@ -1,8 +1,9 @@
 #include <Utilities/MeshUtilities.h>
+#include <Engine/AssetsManager.h>
 
-Mesh* MeshUtilities::CreateCube(float size)
+Mesh* MeshUtilities::CreateCube(const std::string& assetName, float size)
 {
-    Mesh* mesh = new Mesh(true);
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     float halfSize = size / 2.0f;
     std::vector<Vector3> vertices;
 
@@ -99,9 +100,9 @@ Mesh* MeshUtilities::CreateCube(float size)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateCustomCuveUV(float size, CubeUVInfo cubeUVInfo)
+Mesh* MeshUtilities::CreateCustomCuveUV(const std::string& assetName, float size, CubeUVInfo cubeUVInfo)
 {
-    Mesh* mesh = CreateCube(size);
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
 
     std::vector<Vector2> uvs;
     float halfFaceUVSize = cubeUVInfo.uvFaceSize / 2.0f;
@@ -154,9 +155,9 @@ Mesh* MeshUtilities::CreateCustomCuveUV(float size, CubeUVInfo cubeUVInfo)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateRectangle(float width, float height)
+Mesh* MeshUtilities::CreateRectangle(const std::string& assetName, float width, float height)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     float halfWidth = width / 2.0f;
     float halfHeight = height / 2.0f;
 
@@ -180,9 +181,9 @@ Mesh* MeshUtilities::CreateRectangle(float width, float height)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateRegularConvexPolygon(int sideCount, float radius)
+Mesh* MeshUtilities::CreateRegularConvexPolygon(const std::string& assetName, int sideCount, float radius)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     float angle = 2.0f * M_PI / sideCount;
 
@@ -207,9 +208,9 @@ Mesh* MeshUtilities::CreateRegularConvexPolygon(int sideCount, float radius)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateCircle(float radius)
+Mesh* MeshUtilities::CreateCircle(const std::string& assetName, float radius)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
     float angle = 0.0f;
@@ -241,9 +242,9 @@ Mesh* MeshUtilities::CreateCircle(float radius)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateGrid(int widthTileCount, int heightTileCount)
+Mesh* MeshUtilities::CreateGrid(const std::string& assetName, int widthTileCount, int heightTileCount)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
     float halfWidth = widthTileCount / 2.0f;
@@ -276,13 +277,13 @@ Mesh* MeshUtilities::CreateGrid(int widthTileCount, int heightTileCount)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateRoundedCube(float size, float radius, int subdivisions, float subdivisionStart)
+Mesh* MeshUtilities::CreateRoundedCube(const std::string& assetName, float size, float radius, int subdivisions, float subdivisionStart)
 {
     if (radius > size / 2.0f) {
         radius = size / 2.0f; // Le rayon ne peut pas dépasser la moitié de la taille
     }
 
-    Mesh* mesh = new Mesh(false);
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, false);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
 
@@ -412,8 +413,9 @@ Mesh* MeshUtilities::CreateRoundedCube(float size, float radius, int subdivision
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateGeodesicSphere(float radius, int subdivisions)
+Mesh* MeshUtilities::CreateGeodesicSphere(const std::string& assetName, float radius, int subdivisions)
 {
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     // Vérification des subdivisions
     if (subdivisions < 0) subdivisions = 0;
 
@@ -517,7 +519,7 @@ Mesh* MeshUtilities::CreateGeodesicSphere(float radius, int subdivisions)
     }
 
     // Créer et remplir le mesh
-    Mesh* mesh = new Mesh();
+    
     mesh->SetVertices(vertices);
     mesh->SetUVs(uvs);
     mesh->SetIndices(indices);
@@ -527,9 +529,9 @@ Mesh* MeshUtilities::CreateGeodesicSphere(float radius, int subdivisions)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateUVSphere(float radius, int segments, int rings)
+Mesh* MeshUtilities::CreateUVSphere(const std::string& assetName, float radius, int segments, int rings)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
     std::vector<Vector2> uvs;
@@ -581,9 +583,9 @@ Mesh* MeshUtilities::CreateUVSphere(float radius, int segments, int rings)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateCylinder(float radius, int segments, float height)
+Mesh* MeshUtilities::CreateCylinder(const std::string& assetName, float radius, int segments, float height)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
     std::vector<Vector2> uvs;
@@ -671,9 +673,9 @@ Mesh* MeshUtilities::CreateCylinder(float radius, int segments, float height)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateCustomCylinderUV(float radius, int segments, float height, Vector2 bodyUVPosition, Vector2 bodyUVSize, Vector2 circle1UVPosition, Vector2 circle2UVPosition, float circleUVSize)
+Mesh* MeshUtilities::CreateCustomCylinderUV(const std::string& assetName, float radius, int segments, float height, Vector2 bodyUVPosition, Vector2 bodyUVSize, Vector2 circle1UVPosition, Vector2 circle2UVPosition, float circleUVSize)
 {
-    Mesh* mesh = CreateCylinder(radius, segments, height);
+    Mesh* mesh = CreateCylinder(assetName, radius, segments, height);
     std::vector<Vector2> uvs;
 
     for (int i = 0; i < 2; i++)
@@ -712,9 +714,9 @@ Mesh* MeshUtilities::CreateCustomCylinderUV(float radius, int segments, float he
     return mesh;    
 }
 
-Mesh* MeshUtilities::CreateCone(float radius1, float radius2, int segments, float height)
+Mesh* MeshUtilities::CreateCone(const std::string& assetName, float radius1, float radius2, int segments, float height)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
     std::vector<Vector2> uvs;
@@ -803,9 +805,9 @@ Mesh* MeshUtilities::CreateCone(float radius1, float radius2, int segments, floa
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateTorus(float radius, float radius2, int segments, int rings)
+Mesh* MeshUtilities::CreateTorus(const std::string& assetName, float radius, float radius2, int segments, int rings)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
     std::vector<Vector2> uvs;
@@ -859,9 +861,9 @@ Mesh* MeshUtilities::CreateTorus(float radius, float radius2, int segments, int 
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateCapsule(float radius, float height, int segments, int rings)
+Mesh* MeshUtilities::CreateCapsule(const std::string& assetName, float radius, float height, int segments, int rings)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
     std::vector<Vector2> uvs;
@@ -1007,9 +1009,9 @@ Mesh* MeshUtilities::CreateCapsule(float radius, float height, int segments, int
     return mesh;
 }
 
-Mesh* MeshUtilities::CreatePyramid(float size)
+Mesh* MeshUtilities::CreatePyramid(const std::string& assetName, float size)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
 
@@ -1050,9 +1052,9 @@ Mesh* MeshUtilities::CreatePyramid(float size)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreatePrism(float size, int sides)
+Mesh* MeshUtilities::CreatePrism(const std::string& assetName, float size, int sides)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
 
@@ -1091,9 +1093,9 @@ Mesh* MeshUtilities::CreatePrism(float size, int sides)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreatePlane(float size)
+Mesh* MeshUtilities::CreatePlane(const std::string& assetName, float size)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     float halfSize = size / 2.0f;
 
     std::vector<Vector3> vertices =
@@ -1127,9 +1129,9 @@ Mesh* MeshUtilities::CreatePlane(float size)
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateStaircase(float width, float stepHeight, float stepDepth, int stepCount)
+Mesh* MeshUtilities::CreateStaircase(const std::string& assetName, float width, float stepHeight, float stepDepth, int stepCount)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<Vector2> uvs;
     std::vector<unsigned int> indices;
@@ -1239,9 +1241,9 @@ Mesh* MeshUtilities::CreateStaircase(float width, float stepHeight, float stepDe
 }
 
 // Creation D'un Mesh pour l'eau et les vagues
-Mesh* MeshUtilities::CreateWaterMesh(int width, int height, float tileSize, float waveHeight, float waveLength, float waveSpeed, float waveSteepness)
+Mesh* MeshUtilities::CreateWaterMesh(const std::string& assetName, int width, int height, float tileSize, float waveHeight, float waveLength, float waveSpeed, float waveSteepness)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<Vector2> uvs;
     std::vector<unsigned int> indices;
@@ -1288,9 +1290,9 @@ Mesh* MeshUtilities::CreateWaterMesh(int width, int height, float tileSize, floa
 }
 
 // Création d'un Mesh pour un terrain sans 'erreur Segmentation fault'
-Mesh* MeshUtilities::CreateTerrainMesh(int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength)
+Mesh* MeshUtilities::CreateTerrainMesh(const std::string& assetName, int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength)
 {
-    Mesh* mesh = new Mesh();
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<Vector2> uvs;
     std::vector<unsigned int> indices;
@@ -1359,9 +1361,9 @@ Mesh* MeshUtilities::CreateTerrainMesh(int width, int height, float tileSize, fl
     return mesh;
 }
 
-Mesh* MeshUtilities::CreateProceduralTerrain(int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength)
+Mesh* MeshUtilities::CreateProceduralTerrain(const std::string& assetName, int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength)
 {
-    Mesh* mesh = new Mesh(); // Nouveau mesh pour le terrain
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true); // Nouveau mesh pour le terrain
 
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;

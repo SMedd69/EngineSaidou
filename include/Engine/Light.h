@@ -3,12 +3,14 @@
 
 #include <Engine/Color.h>
 #include <Math/Vector3.h>
+#include <Engine/Component.h>
 
-class Light
+class Light : public Component
 {
+protected:
+    ~Light() = default;
+    Light();
 public:
-    virtual ~Light() = default;
-
     enum class LightType
     {
         Directional,
@@ -22,13 +24,7 @@ public:
     Color m_specularColor;
 
     void SetIntensity(const float& intensity);
-
     float m_intensity = 1.0f;
-
-protected:
-
-    Light();
-
 };
 
 #endif

@@ -5,6 +5,7 @@
     #include <glad/glad.h>
 
     #include <Utilities/Logger.h>
+    #include <Engine/Assets.h>
     #include <Utilities/stb_image.h>
 
     enum class Wrap
@@ -30,7 +31,8 @@
         Point = GL_NEAREST,
         Bilinear = GL_LINEAR
     };
-    class Texture {
+    class Texture : public Assets
+    {
         public:
 
             Texture(std::string filePath);

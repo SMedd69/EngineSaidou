@@ -34,16 +34,6 @@
         public:
             Engine(bool running);
             void Run(bool running);
-
-            void ShowMeshes();
-            static float zoomDelta;
-
-            int CreateCube(Vector3 position, Quaternion rotation, Vector3 scale, Mesh* mesh, Shader* shader, Material* material, Texture* texture, std::vector<Transform>& transforms, std::vector<MeshRenderer*>& meshRenderers);
-            void SetRotation(int index, Quaternion rotation, std::vector<MeshRenderer*> meshRenderers);
-            void SetPosition(int index, Vector3 position, std::vector<MeshRenderer*> meshRenderers);
-
-            Vector3 GetPosition(int index, std::vector<MeshRenderer*> meshRenderers);
-            Quaternion GetRotation(int index, std::vector<MeshRenderer*> meshRenderers);
         private:
             bool m_Running;
 

@@ -1,9 +1,22 @@
 #include <Engine/Camera.h>
+#include <iostream>
 
 Camera::Camera(Vector3 position, Vector3 angle, float size, bool isPerspective, bool isHorizontal)
     : m_position(position), m_angle(angle), m_size(size), m_isPerspective(isPerspective), m_isHorizontal(isHorizontal)
 {
 
+}
+
+void Camera::SetProjectionMode(EProjectionMode _projectionMode)
+{
+    if(_projectionMode == EProjectionMode::PERSPECTIVE)
+    {
+        m_isPerspective = true;
+    }
+    else
+    {
+        m_isPerspective = false;
+    }
 }
 
 Vector2 Camera::GetVerticalAndHorizontalSize(float width, float height)const

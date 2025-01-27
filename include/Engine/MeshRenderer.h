@@ -2,14 +2,14 @@
 #define _MESH_RENDERER_H_
 
 #include <Engine/Camera.h>
+#include <Engine/Light.h>
 #include <Engine/Window.h>
 #include <Engine/Transform.h>
 #include <Engine/Shader.h>
 #include <Engine/Mesh.h>
-#include <Engine/Light.h>
 #include <Engine/Material.h>
-
-#include <Utilities/Texture.h>
+#include <Engine/Component.h>
+#include <set>
 
 enum class PolygonMode
 {
@@ -18,41 +18,40 @@ enum class PolygonMode
 	Point = GL_POINT,
 };
 
-class MeshRenderer
+class MeshRenderer : public Component
 {
 private:
 
 	PolygonMode m_polygonMode = PolygonMode::Fill;
-	Shader* m_shader;
-	Transform m_transform;
-	Mesh* m_mesh;
-	Texture* m_texture;
+	Shader* m_shader = nullptr;
+	Transform* m_transform = nullptr;
+	Mesh* m_mesh = nullptr;
 	bool m_drawPartialMesh = false;
 	int m_partialMeshElementCount = 0;
 	int m_partialMeshStartIndex = 0;
-	Vector2 m_textureTilling = Vector2(1, 1);
-	Vector2 m_textureOffset = Vector2(0, 0);
-	Material* m_material;
+	Material* m_material = nullptr;
 public:
-	MeshRenderer(Mesh* mesh, Transform transform, Shader* shader, Material* material, Texture* texture, Vector2 textureTilling = Vector2(0, 0), Vector2 textureOffset = Vector2(1,1));
-	void Draw(Camera* camera, std::vector<Light*> lights, Window* window)const;
+	MeshRenderer() = default;
+
+	void Draw(Camera* camera, std::set<Light*> lights, Window* window)const;
 	void SetDrawPartialMesh(bool drawPartialMesh);
 	void SetPartialMeshElementCount(int partialMeshElementCount);
 	void SetPartialMeshStartIndex(int partialMeshStartIndex);
 	void SetMesh(Mesh* mesh);
 	void SetShader(Shader* shader);
+	void SetMaterial(Material* material);
 	void SetPolygonMode(PolygonMode polygonMode);
-	void SetTransform(Transform transform);
-	void SetTilling(Vector2 tilling);
-	void SetOffset(Vector2 offset);
+	void SetTransform(Transform* transform);
 
 	bool GetDrawPartialMesh()const;
 	int GetPartialMeshElementCount()const;
 	int GetPartialMeshStartIndex()const;
 	const Mesh* GetMesh()const;
 	const Shader* GetShader()const;
+	const Material* GetMaterial()const;
+
 	PolygonMode GetPolygonMode()const;
-	Transform GetTransform()const;
+	Transform* GetTransform()const;
 };
 
 #endif // !_MESH_RENDERER_H_

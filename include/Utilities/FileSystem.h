@@ -8,6 +8,6 @@
     class FileSystem
     {
         public:
-            static std::string get_file_content(const char* filename);
+            static std::string get_file_content(std::string filename);
     };
 #endif

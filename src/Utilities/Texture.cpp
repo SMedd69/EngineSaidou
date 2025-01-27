@@ -10,7 +10,7 @@ Texture::Texture(std::string filePath)
 
 Texture::~Texture()
 {
-
+    glDeleteTextures(1, &m_textureID);
 }
 
 unsigned char* Texture::LoadTexture(std::string filePath)

@@ -1,4 +1,5 @@
 #include <Engine/Mesh.h>
+#include <Math/Vector4.h>
 
 Mesh::Mesh(bool useOneVBO)
 	: m_useOneVBO(useOneVBO)

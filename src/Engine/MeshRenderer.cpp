@@ -3,35 +3,27 @@
 #include <Engine/PointLight.h>
 #include <Engine/SpotLight.h>
 #include <Engine/LightingSettings.h>
+#include <Engine/Shader.h>
 #include <iostream>
 #include <sstream>
 
-MeshRenderer::MeshRenderer(Mesh* mesh, Transform transform, Shader* shader, Material* material, Texture* texture, Vector2 textureTilling, Vector2 textureOffset)
+void MeshRenderer::Draw(Camera* camera, std::set<Light*> lights, Window* window)const
 {
-	m_mesh = mesh;
-	m_transform = transform;
-	m_shader = shader;
-	m_material = material;
-	m_texture = texture;
-	m_textureTilling = textureTilling;
-	m_textureOffset = textureOffset;
-}
+	if(m_mesh == nullptr || m_shader == nullptr || m_material == nullptr)
+		return;
 
-void MeshRenderer::Draw(Camera* camera, std::vector<Light*> lights, Window* window)const
-{
 	glPolygonMode(GL_FRONT_AND_BACK, (int)m_polygonMode);
 
 	m_shader->UseShader();
-	m_shader->SetUniformMatrix4x4("model", m_transform.TransformMatrix());
+
+	Matrix4x4 modelMatrix = m_transform != nullptr ? m_transform->TransformMatrix() : Matrix4x4::Identity();
+	m_shader->SetUniformMatrix4x4("model", modelMatrix);
 	m_shader->SetUniformMatrix4x4("view", camera->ViewMatrix());
 	m_shader->SetUniformMatrix4x4("projection", camera->ProjectionMatrix(window->GetWidth(), window->GetHeight()));
 
-	Matrix3x3 normalMatrix = (Matrix3x3)(m_transform.TransformMatrix()).Inverse().Transpose();
+	Matrix3x3 normalMatrix = (Matrix3x3)(modelMatrix).Inverse().Transpose();
 	m_shader->SetUniformMatrix3x3("normalMatrix", normalMatrix);
 	m_shader->SetUniformVector3D("uViewPos", camera->GetPosition());
-
-	m_shader->SetUniformVector2D("textureTilling", m_textureTilling);
-	m_shader->SetUniformVector2D("textureOffset", m_textureOffset);
 
 	m_shader->SetUniformColor("material.ambientColor", m_material->m_ambientColor);
 	m_shader->SetUniformColor("material.diffuseColor", m_material->m_diffuseColor);
@@ -61,11 +53,12 @@ void MeshRenderer::Draw(Camera* camera, std::vector<Light*> lights, Window* wind
 	int directionalLightCounter = 0;
 	int spotLightCounter = 0;
 	int pointLightCounter = 0;
-	for (int i = 0; i < lights.size(); i++)
+	for (auto it = lights.begin(); it != lights.end(); ++it)
 	{
-		if (lights[i]->m_lightType == Light::LightType::Directional)
+		Light* light = *it;
+		if (light->m_lightType == Light::LightType::Directional)
 		{
-			DirectionalLight* directionalLight = dynamic_cast<DirectionalLight*>(lights[i]);
+			DirectionalLight* directionalLight = dynamic_cast<DirectionalLight*>(light);
 			m_shader->SetUniformColor("directionalLight.ambientColor", directionalLight->m_ambiantColor);
 			m_shader->SetUniformColor("directionalLight.diffuseColor", directionalLight->m_diffuseColor);
 			m_shader->SetUniformColor("directionalLight.specularColor", directionalLight->m_specularColor);
@@ -73,9 +66,9 @@ void MeshRenderer::Draw(Camera* camera, std::vector<Light*> lights, Window* wind
 			m_shader->SetUniformFloat("directionalLight.intensity", directionalLight->m_intensity);
 			directionalLightCounter++;
 		}
-		else if (lights[i]->m_lightType == Light::LightType::Point)
+		else if (light->m_lightType == Light::LightType::Point)
 		{
-			PointLight* pointLight = dynamic_cast<PointLight*>(lights[i]);
+			PointLight* pointLight = dynamic_cast<PointLight*>(light);
 			std::string ambiant = (std::ostringstream() << "pointLights[" << pointLightCounter << "].ambientColor").str();
 			std::string diffuse = (std::ostringstream() << "pointLights[" << pointLightCounter << "].diffuseColor").str();
 			std::string specular = (std::ostringstream() << "pointLights[" << pointLightCounter << "].specularColor").str();
@@ -98,9 +91,9 @@ void MeshRenderer::Draw(Camera* camera, std::vector<Light*> lights, Window* wind
 			m_shader->SetUniformFloat(intensity, pointLight->m_intensity);
 			pointLightCounter++;
 		}
-		else if (lights[i]->m_lightType == Light::LightType::Spot)
+		else if (light->m_lightType == Light::LightType::Spot)
 		{
-			SpotLight* spotLight = dynamic_cast<SpotLight*>(lights[i]);
+			SpotLight* spotLight = dynamic_cast<SpotLight*>(light);
 			std::string ambiant = (std::ostringstream() << "spotLights[" << spotLightCounter << "].ambientColor").str();
 			std::string diffuse = (std::ostringstream() << "spotLights[" << spotLightCounter << "].diffuseColor").str();
 			std::string specular = (std::ostringstream() << "spotLights[" << spotLightCounter << "].specularColor").str();
@@ -172,12 +165,17 @@ void MeshRenderer::SetShader(Shader* shader)
 	m_shader = shader;
 }
 
+void MeshRenderer::SetMaterial(Material* material)
+{
+	m_material = material;
+}
+
 void MeshRenderer::SetPolygonMode(PolygonMode polygonMode)
 {
 	m_polygonMode = polygonMode;
 }
 
-void MeshRenderer::SetTransform(Transform transform)
+void MeshRenderer::SetTransform(Transform* transform)
 {
 	m_transform = transform;
 }
@@ -213,17 +211,12 @@ PolygonMode MeshRenderer::GetPolygonMode()const
 	return m_polygonMode;
 }
 
-Transform MeshRenderer::GetTransform()const 
+Transform* MeshRenderer::GetTransform()const 
 {
 	return m_transform;
 }
 
-void MeshRenderer::SetTilling(Vector2 tilling)
+const Material* MeshRenderer::GetMaterial()const 
 {
-	m_textureTilling = tilling;
-}
-
-void MeshRenderer::SetOffset(Vector2 offset)
-{
-	m_textureOffset = offset;
+	return m_material;
 }

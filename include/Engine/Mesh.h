@@ -3,9 +3,11 @@
 #include <vector>
 #include <Math/Vector2.h>
 #include <Math/Vector3.h>
-#include <Math/Vector4.h>
+
 #include <glad/glad.h>
 #include <iostream>
+
+#include <Engine/Assets.h>
 
 enum class GLDrawType
 {
@@ -28,7 +30,7 @@ public:
 	Vector3 m_normal;
 };
 
-class Mesh
+class Mesh : public Assets
 {
 public:
 

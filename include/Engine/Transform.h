@@ -4,8 +4,9 @@
     #include <Math/Vector3.h>
     #include <Math/Matrix4x4.h>
     #include <Math/Quaternion.h>
+    #include <Engine/Component.h>
 
-    struct Transform
+    struct Transform : public Component
     {
         Vector3 m_position;
         Vector3 m_scale;

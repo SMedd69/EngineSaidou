@@ -10,6 +10,7 @@ option(TARGET_PLATFORM "Choose the target platform (windows, linux, android, ios
 # Ajoutez les fichiers d'en-tête et source manuellement
 set(INCLUDE_DIR "${CMAKE_SOURCE_DIR}/include")
 set(INCLUDE_DIR_ENGINE "${CMAKE_SOURCE_DIR}/include/Engine")
+set(INCLUDE_DIR_GAME "${CMAKE_SOURCE_DIR}/include/Game")
 set(INCLUDE_DIR_MATH "${CMAKE_SOURCE_DIR}/include/Math")
 set(INCLUDE_DIR_UTILITIES "${CMAKE_SOURCE_DIR}/include/Utilities")
 set(INCLUDE_DIR_IMGUI "${CMAKE_SOURCE_DIR}/include/ImGUI")
@@ -63,6 +64,14 @@ add_executable(engine_saidou
     ${SRC_DIR}/Engine/SpotLight.cpp
     ${SRC_DIR}/Engine/DirectionalLight.cpp
     ${SRC_DIR}/Engine/PointLight.cpp
+    ${SRC_DIR}/Engine/Assets.cpp
+    ${SRC_DIR}/Engine/AssetsManager.cpp
+    ${SRC_DIR}/Engine/Component.cpp
+    ${SRC_DIR}/Engine/Entity.cpp
+    ${SRC_DIR}/Engine/World.cpp
+
+    ${SRC_DIR}/Game/DirectionalLightController.cpp
+    ${SRC_DIR}/Game/DirectionalLightEntity.cpp
 
     ${SRC_DIR}/Utilities/TransformationUtilities.cpp
     ${SRC_DIR}/Utilities/MeshUtilities.cpp
@@ -109,6 +118,7 @@ target_link_libraries(engine_saidou OpenGL::GL)
 target_link_directories(engine_saidou PRIVATE ${GLFW_LIB_PATH})
 target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR})
 target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_ENGINE})
+target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_GAME})
 target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_MATH})
 target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_UTILITIES})
 target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_IMGUI})
