@@ -1,4 +1,6 @@
 #include <Engine/Engine.h>
+#include <Utilities/ImGui_Test.h>
+#include <ImGUI/imgui.h>
 #include <Engine/World.h>
 #include <ctime>
 
@@ -15,7 +17,7 @@ void Engine::Run(bool running)
     // Log du démarrage avec dessin
     PrintStartBanner();
 
-    Window* window = new Window(780, 450, "OpenGL");
+    Window* window = new Window(1920, 1080, "OpenGL");
 
     ImGUITest* imGuiTest = new ImGUITest(window->GetWindow(), running);
     glEnable(GL_DEPTH_TEST);
@@ -29,6 +31,13 @@ void Engine::Run(bool running)
     // Dans la boucle principale, juste avant de dessiner
     while (!glfwWindowShouldClose(window->GetWindow()) && running)
     {
+        glfwPollEvents();
+
+        // Démarrer une nouvelle frame ImGUI
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+        
         // Effacer l'écran
         glClearColor(0.3f, 0.3f, 0.3f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -37,7 +46,6 @@ void Engine::Run(bool running)
         world->Display(window);
 
         glfwSwapBuffers(window->GetWindow());
-        glfwPollEvents();
     }
 
     #pragma region Destructors

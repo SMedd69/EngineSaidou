@@ -14,11 +14,17 @@ class Entity
 public:
 	
 	Entity();
+	Entity(const std::string& nameEntity);
 	~Entity();
 
 	void Destroy();
 	virtual void Start();
 	virtual void Update();
+
+	void SetNameEntity(std::string& nameEntity);
+
+	const std::string& GetName()const;
+	const std::vector<Component*>& GetAllComponents()const;
 
 	template<class T>
 	T* AddComponent()
@@ -29,6 +35,7 @@ public:
 		Component* c = dynamic_cast<Component*>(t);
 		c->SetOwnEntity(this);
 		m_components.insert(t);
+		m_componentAll.push_back(c);
 
 		World::Instance()->RegisterComponent(c);
 		return t;
@@ -65,6 +72,10 @@ public:
 	};
 
 	void DestroyComponent(Component* component);
+
+	private:
+		std::string m_nameEntity = "Unnamed Entity";
+		std::vector<Component*> m_componentAll;
 };
 
 #include "Component.h"

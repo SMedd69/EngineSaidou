@@ -1,4 +1,4 @@
-#ifndef  _ASSETS_H_
+#ifndef _ASSETS_H_
 #define _ASSETS_H_
 
 class Assets

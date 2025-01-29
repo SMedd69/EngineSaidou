@@ -66,6 +66,6 @@ Shader* AssetsManager::CreateShader(const std::string& assetName, std::string ve
 	Shader* shader = new Shader(vertexShaderFilePath, fragmentShaderFilePath);
 	assetsManager->m_assets.emplace(assetName, shader);
 
-	return NULL;
+	return shader;
 }
 

@@ -38,13 +38,18 @@ public :
 
 		return entity;
 	}
+
 	void InitAssets();
 	void InitWorld();
 	void Update();
 	void Display(Window* window);
+
+	void RenderUiGui();
+	void CreateMeshCube(Mesh* meshObj, std::string nameEntity);
+	void RenderComponentsUI();
+	void CreatedMesh();
 };
 
 #include "Entity.h"
 
 #endif
-

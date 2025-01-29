@@ -1,5 +1,5 @@
-#ifndef  _ASSETSMANGER_H_
-#define _ASSETSMANGER_H_
+#ifndef _ASSETSMANAGER_H_
+#define _ASSETSMANAGER_H_
 #include <Engine/Mesh.h>
 #include <Utilities/Texture.h>
 #include <Engine/Material.h>

@@ -24,6 +24,7 @@ public:
     Color m_specularColor;
 
     void SetIntensity(const float& intensity);
+    void SetTypeLight(const LightType& lightType);
     float m_intensity = 1.0f;
 };
 

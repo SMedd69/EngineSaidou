@@ -13,3 +13,8 @@ void Light::SetIntensity(const float& intensity)
 {
     m_intensity = intensity;
 }
+
+void Light::SetTypeLight(const LightType& lightType)
+{
+    m_lightType = lightType;
+}

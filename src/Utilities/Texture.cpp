@@ -58,7 +58,7 @@ void Texture::UpdateTextureData(const unsigned char* data)
     glGenerateMipmap(GL_TEXTURE_2D);
     SetAnisotropy(m_anisotropyValue);
 
-    Logger::getInstance().log("Texture data is updated.", Logger::LogLevel::INFO, __FILE__, __LINE__);
+    Logger::getInstance().log("Texture data is updated.", Logger::LogLevel::SUCCESS, __FILE__, __LINE__);
 }
 
 void Texture::SetMipMapTexture(int level, std::string filePath)

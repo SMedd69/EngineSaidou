@@ -228,8 +228,6 @@ void Mesh::ComputeNormals()
 				m_normals[vertexIndice0] = normal;
 				m_normals[vertexIndice1] = normal;
 				m_normals[vertexIndice2] = normal;
-
-				std::cout << "Normal : " << normal << std::endl;
 			}
 		}
 
