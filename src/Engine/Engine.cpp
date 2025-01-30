@@ -2,6 +2,7 @@
 #include <Utilities/ImGui_Test.h>
 #include <ImGUI/imgui.h>
 #include <Engine/World.h>
+#include <Engine/InputSystem.h>
 #include <ctime>
 
 Engine::Engine(bool running):
@@ -25,6 +26,9 @@ void Engine::Run(bool running)
     World* world = World::Instance();
     world->InitWorld();
 
+    InputSystem* inputSystem = InputSystem::Instance();
+
+
     float cameraAngle = 0.0f;
     float stepLight = 1.0f;
 
@@ -32,6 +36,7 @@ void Engine::Run(bool running)
     while (!glfwWindowShouldClose(window->GetWindow()) && running)
     {
         glfwPollEvents();
+        inputSystem->ProcessInput(window);
 
         // Démarrer une nouvelle frame ImGUI
         ImGui_ImplOpenGL3_NewFrame();

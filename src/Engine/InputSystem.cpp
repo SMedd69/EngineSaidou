@@ -79,7 +79,9 @@ void InputSystem::ProcessInput(Window* window)
 
 	bool mouseScrollXIsModified = false;
 	bool mouseScrollYIsModified = false;
-	std::cout << "UpdateFrame : " << std::endl;
+
+	// std::cout << "UpdateFrame : " << std::endl;
+
 	//Process Input
 	for (auto it = m_unhandledInput.begin(); it != m_unhandledInput.end(); it++)
 	{

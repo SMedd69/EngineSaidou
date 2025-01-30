@@ -25,8 +25,11 @@ void Window::InitialiseGLFWCallback()
 
 			InputSystem* inputSystem = InputSystem::Instance();
 
+            std::cout << "Key: " << key << std::endl;
 			if (action == GLFW_PRESS || action == GLFW_RELEASE)
+            {
 				inputSystem->RegisterInput(win, ConvertGLFWInputKeyCode(key), ConvertGLFWInputAction(action));
+            }
 		});
 
 	glfwSetMouseButtonCallback(m_window, [](GLFWwindow* window, int mouseButton, int action, int mods)

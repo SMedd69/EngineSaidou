@@ -54,8 +54,8 @@ void World::InitAssets()
 	Shader* shader = AssetsManager::CreateShader("BlinnPhongShader", "assets/shaders/BlinnPhongShader.vert", "assets/shaders/BlinnPhongShader.frag");
 
 	//Initialise Textures
-	Texture* cubeTexture = AssetsManager::CreateTexture("CubeFaceTexture","assets/textures/RedTiles/Red_Tiles_DIFF.jpg");
-	Texture* cubeSpecularTexture = AssetsManager::CreateTexture("CubeSpecularTexture","assets/textures/RedTiles/Red_Tiles_SPEC.jpg");
+	Texture* cubeTexture = AssetsManager::CreateTexture("CubeFaceTexture","assets/textures/Damiers/CubeTextureFace.png");
+	Texture* cubeSpecularTexture = AssetsManager::CreateTexture("CubeSpecularTexture","assets/textures/Damiers/CubeTextureSpecular.png");
 
 	//Initialise Mesh
 	Mesh* cubeMesh = MeshUtilities::CreateGeodesicSphere("CubeMesh", .1f, 6);
@@ -73,9 +73,12 @@ void World::InitWorld()
     // Initialiser la caméra
     Vector3 cameraPosition = Vector3(0.0f, 0.5f, -10.8f);
     Vector3 cameraAngles = Vector3(0.0f, 0.0f, 0.0f);
+    
+    std::string nameEntityCamera = "Camera";
 
     Entity* cameraEntity = CreateEntity<Entity>();
     {
+        cameraEntity->SetNameEntity(nameEntityCamera);
         Camera* cameraComponent = cameraEntity->AddComponent<Camera>();
         if (!cameraComponent)
         {
@@ -88,9 +91,12 @@ void World::InitWorld()
         cameraComponent->SetFov(60.0f);
     }
 
+    std::string nameEntityCube = "Cube";
+
     // Initialiser le cube
     Entity* cubeEntity = CreateEntity<Entity>();
     {
+        cubeEntity->SetNameEntity(nameEntityCube);
         Transform* transformComponent = cubeEntity->AddComponent<Transform>();
         if (!transformComponent)
         {
@@ -113,9 +119,12 @@ void World::InitWorld()
         meshRendererComponent->SetMaterial(AssetsManager::GetAsset<Material>("Material0"));
     }
 
+    std::string nameEntityCylinder = "Cylinder";
+
     // Initialiser le cylindre
     Entity* cylinderEntity = CreateEntity<Entity>();
     {
+        cylinderEntity->SetNameEntity(nameEntityCylinder);
         Transform* transformComponent = cylinderEntity->AddComponent<Transform>();
         if (!transformComponent)
         {
@@ -138,6 +147,7 @@ void World::InitWorld()
         meshRendererComponent->SetMaterial(AssetsManager::GetAsset<Material>("Material1"));
     }
 
+    std::string nameEntityDLight = "Directional Light";
     // Initialiser la lumière directionnelle
     DirectionalLightEntity* lightEntity = CreateEntity<DirectionalLightEntity>();
     {
@@ -153,9 +163,10 @@ void World::InitWorld()
         dLightComponent->m_intensity = 3.0f;
 
         lightEntity->SetDirectionalLightComponent(dLightComponent);
+        lightEntity->SetNameEntity(nameEntityDLight);
 
-        DirectionalLightControllerComponent* dLightControllerComponent = lightEntity->AddComponent<DirectionalLightControllerComponent>();
-        dLightControllerComponent->SetDirectionalLightComponent(dLightComponent);
+        // DirectionalLightControllerComponent* dLightControllerComponent = lightEntity->AddComponent<DirectionalLightControllerComponent>();
+        // dLightControllerComponent->SetDirectionalLightComponent(dLightComponent);
     }
 
     // Démarrer chaque entité
@@ -175,7 +186,6 @@ void World::Update()
 		entity->Update();
 	}
 	RenderUiGui();
-	// RenderComponentsUI();
 }
 
 void World::Display(Window* window)
