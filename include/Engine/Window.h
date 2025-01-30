@@ -7,6 +7,7 @@
     #include <string>
 
     #include <Utilities/Logger.h>
+    #include <Engine/InputSystem.h>
     
     class Window
     {
@@ -21,6 +22,15 @@
         void RefreshWidthAndHeight();
         static void SetTheFrameBufferSize(GLFWwindow* window, int width, int height);
 
+        static InputCode ConvertGLFWInputKeyCode(int keyCode);
+
+        static InputCode ConvertGLFWInputMouseCode(int mouseInput);
+        static float ConvertGLFWInputAction(int action);
+
+        void LockMouseInput(bool lock);
+        float lastPositionX = 0.0f;
+        float lastPositionY = 0.0f;
+
         private:
         int m_glMajorVersion = GLVersion.major;
         int m_glMinorVersion = GLVersion.minor;
@@ -33,6 +43,8 @@
         int InitializeGLFW();
         int CreateWindowGLFW();
         int InitializeGlad();
+
+        void InitialiseGLFWCallback();
         
     };
 #endif

@@ -2963,3 +2963,75 @@
 
 [INFO] _____________________________
 
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Thu Jan 30 10:54:40 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:138)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:176)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:159)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_DIFF.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_SPEC.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Thu Jan 30 10:55:36 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Thu Jan 30 13:41:37 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:138)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:176)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:159)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_DIFF.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_SPEC.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Thu Jan 30 13:44:13 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Thu Jan 30 13:45:47 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:138)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:176)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:159)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_DIFF.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/RedTiles/Red_Tiles_SPEC.jpg is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Thu Jan 30 13:46:46 2025
+
+[INFO] _____________________________
+

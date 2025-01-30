@@ -69,6 +69,13 @@ add_executable(engine_saidou
     ${SRC_DIR}/Engine/Component.cpp
     ${SRC_DIR}/Engine/Entity.cpp
     ${SRC_DIR}/Engine/World.cpp
+    
+    ${SRC_DIR}/Engine/Event.cpp
+    ${SRC_DIR}/Engine/EventCallback.cpp
+    ${SRC_DIR}/Engine/InputAction.cpp
+    ${SRC_DIR}/Engine/InputCode.cpp
+    ${SRC_DIR}/Engine/InputMap.cpp
+    ${SRC_DIR}/Engine/InputSystem.cpp
 
     ${SRC_DIR}/Game/DirectionalLightController.cpp
     ${SRC_DIR}/Game/DirectionalLightEntity.cpp
@@ -96,7 +103,7 @@ add_executable(engine_saidou
     ${SRC_DIR}/Math/Matrix2x2.cpp
     ${SRC_DIR}/Math/Matrix3x3.cpp
     ${SRC_DIR}/Math/Matrix4x4.cpp
-    ${SRC_DIR}/Math/Quaternion.cpp
+    ${SRC_DIR}/Math/Quaternion.cpp    
 )
 
 # Configuration du sous-système pour Debug et Release
