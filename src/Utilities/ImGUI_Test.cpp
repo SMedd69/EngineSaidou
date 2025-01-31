@@ -4,8 +4,8 @@
 #include <Engine/World.h>
 #include <Engine/DirectionalLight.h>
 
-ImGUITest::ImGUITest(GLFWwindow* window, bool running)
-    : m_window(window), m_running(running)
+ImGUITest::ImGUITest(GLFWwindow* window)
+    : m_window(window)
 {
     Init();
 }
@@ -20,26 +20,6 @@ void ImGUITest::Init()
 
     ImGui_ImplGlfw_InitForOpenGL(m_window, true);
     ImGui_ImplOpenGL3_Init("#version 460");
-}
-
-void ImGUITest::Run(float customColor[4], Vector4 colorBackGround, float camPos[3], float camRot[3],
-                    float windowWidth, float windowHeight, float* light,
-                    float ambientColor[4], float diffuseColor[4], float specularColor[4])
-{
-    // Démarre une nouvelle frame pour ImGui
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplGlfw_NewFrame();
-    ImGui::NewFrame();
-}
-
-void ImGUITest::SetRunning(bool running)
-{
-    m_running = running;
-}
-
-bool ImGUITest::GetRunning() const
-{
-    return m_running;
 }
 
 // ----------------------- World UI Rendering -----------------------

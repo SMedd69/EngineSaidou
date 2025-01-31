@@ -11,14 +11,9 @@
     class ImGUITest
     {
     public:
-        ImGUITest(GLFWwindow* window, bool running);
+        ImGUITest(GLFWwindow* window);
         void Init();
-        void Run(float customColor[4], Vector4 colorBackGround, float camPos[3], float camRot[3], float windowWidth, float windowHeight, float* light, float ambientColor[4], float diffuseColor[4], float specularColor[4]);
-
-        void SetRunning(bool running);
-        bool GetRunning()const;
     private:
         GLFWwindow* m_window;
-        bool m_running;
     };
 #endif

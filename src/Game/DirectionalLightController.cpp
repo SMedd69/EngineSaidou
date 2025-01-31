@@ -28,4 +28,3 @@ void DirectionalLightControllerComponent::SetDirectionalLightComponent(Direction
 {
 	m_directionalLightComponent = directionalLightComponent;
 }
-

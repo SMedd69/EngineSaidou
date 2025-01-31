@@ -17,14 +17,15 @@ void Engine::Run(bool running)
 
     // Log du démarrage avec dessin
     PrintStartBanner();
+    std::string titleWindow = "Engine Saidou : " + std::to_string(ImGui::GetFrameCount()) + "fps";
+    Window* window = new Window(1920, 1080, titleWindow.c_str());
 
-    Window* window = new Window(1920, 1080, "OpenGL");
-
-    ImGUITest* imGuiTest = new ImGUITest(window->GetWindow(), running);
-    glEnable(GL_DEPTH_TEST);
+    ImGUITest* imGuiTest = new ImGUITest(window->GetWindow());
 
     World* world = World::Instance();
     world->InitWorld();
+
+    glEnable(GL_DEPTH_TEST);
 
     InputSystem* inputSystem = InputSystem::Instance();
 
