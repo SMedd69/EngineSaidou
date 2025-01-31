@@ -91,7 +91,7 @@ void World::InitWorld()
         cameraComponent->SetFov(60.0f);
     }
 
-    std::string nameEntityCube = "Cube";
+    std::string nameEntityCube = "Sphere";
 
     // Initialiser le cube
     Entity* cubeEntity = CreateEntity<Entity>();
@@ -103,16 +103,19 @@ void World::InitWorld()
             std::cerr << "Failed to create Transform Component" << std::endl;
             return;
         }
-        transformComponent->SetPosition(Vector3(0.0f, 0.5f, 5.0f));
-        transformComponent->SetRotation(Quaternion::AxisAngle(Vector3::Right, 180));
+
+        transformComponent->SetPosition(Vector3(2.0f, 0.5f, 2.0f));
+        transformComponent->SetRotation({0.0f, 0.0f, 0.0f, 1.0f});
         transformComponent->SetScale(Vector3(1.0f, 1.0f, 1.0f));
 
         MeshRenderer* meshRendererComponent = cubeEntity->AddComponent<MeshRenderer>();
+
         if (!meshRendererComponent)
         {
             std::cerr << "Failed to create MeshRenderer Component" << std::endl;
             return;
         }
+
         meshRendererComponent->SetMesh(AssetsManager::GetAsset<Mesh>("CubeMesh"));
         meshRendererComponent->SetTransform(transformComponent);
         meshRendererComponent->SetShader(AssetsManager::GetAsset<Shader>("BlinnPhongShader"));
@@ -126,11 +129,13 @@ void World::InitWorld()
     {
         cylinderEntity->SetNameEntity(nameEntityCylinder);
         Transform* transformComponent = cylinderEntity->AddComponent<Transform>();
+
         if (!transformComponent)
         {
             std::cerr << "Failed to create Transform Component" << std::endl;
             return;
         }
+
         transformComponent->SetPosition(Vector3(0.0f, 0.0f, 5.0f));
         transformComponent->SetRotation(Quaternion::AxisAngle(Vector3::Forward, 0));
         transformComponent->SetScale(Vector3(1.0f, 1.0f, 1.0f));
@@ -141,6 +146,7 @@ void World::InitWorld()
             std::cerr << "Failed to create MeshRenderer Component" << std::endl;
             return;
         }
+
         meshRendererComponent->SetMesh(AssetsManager::GetAsset<Mesh>("CylinderMesh"));
         meshRendererComponent->SetTransform(transformComponent);
         meshRendererComponent->SetShader(AssetsManager::GetAsset<Shader>("BlinnPhongShader"));
@@ -148,6 +154,7 @@ void World::InitWorld()
     }
 
     std::string nameEntityDLight = "Directional Light";
+
     // Initialiser la lumière directionnelle
     DirectionalLightEntity* lightEntity = CreateEntity<DirectionalLightEntity>();
     {
@@ -157,6 +164,7 @@ void World::InitWorld()
             std::cerr << "Failed to create Directional Light Component" << std::endl;
             return;
         }
+
         dLightComponent->m_direction = Vector3(0, 0, 1).Normalized();
         dLightComponent->m_ambiantColor = Color(0, 0, 0, 1.0f);
         dLightComponent->m_specularColor = Color(0.3f, 0.3f, 0.3f, 1.0f);

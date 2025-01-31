@@ -89,7 +89,49 @@ void World::RenderUiGui()
     ImGui::Begin("Create Plane");
     if (ImGui::Button("Create Plane##CreatePlane"))
     {
-        CreateMeshCube(MeshUtilities::CreatePlane("New Sphere", 1.0f), "New Plane");  // Crée une nouvelle entité de type Plane
+        CreateMeshCube(MeshUtilities::CreatePlane("New Plane", 1.0f), "New Plane");  // Crée une nouvelle entité de type Plane
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Cone");
+    if (ImGui::Button("Create Cone##CreateCone"))
+    {
+        CreateMeshCube(MeshUtilities::CreateCone("New Cone", 1.0f, 0.0f, 24, 2.0f), "New Cone");  // Crée une nouvelle entité de type Cone
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Prism");
+    if (ImGui::Button("Create Prism##CreatePrism"))
+    {
+        CreateMeshCube(MeshUtilities::CreatePrism("New Prism", 5.0f, 64), "New Prism");  // Crée une nouvelle entité de type Prism
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Pyramid");
+    if (ImGui::Button("Create Pyramid##CreatePyramid"))
+    {
+        CreateMeshCube(MeshUtilities::CreatePyramid("New Pyramid", 1.0f), "New Pyramid");  // Crée une nouvelle entité de type Pyramid
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Torus");
+    if (ImGui::Button("Create Torus##CreateTorus"))
+    {
+        CreateMeshCube(MeshUtilities::CreateTorus("New Torus", 1.0f, 1.0f, 24, 24), "New Torus");  // Crée une nouvelle entité de type Torus
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Stair");
+    if (ImGui::Button("Create Stair##CreateStair"))
+    {
+        CreateMeshCube(MeshUtilities::CreateStaircase("New Stair", 1.0f, 3.0f, 24, 24), "New Stair");  // Crée une nouvelle entité de type Stair
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Capsule");
+    if (ImGui::Button("Create Capsule##CreateCapsule"))
+    {
+        CreateMeshCube(MeshUtilities::CreateCapsule("New Capsule", 1.0f, 2.0f, 24, 24), "New Capsule");  // Crée une nouvelle entité de type Capsule
     }
     ImGui::End();
 
@@ -248,6 +290,61 @@ void World::RenderComponentsUI()
                     else if (MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component))
                     {
                         ImGui::Text("MeshRenderer: %s", typeid(*meshRenderer).name());
+
+                        const Mesh* mesh = meshRenderer->GetMesh();
+                        if (mesh)
+                        {
+                            std::string meshName = entity->GetName();
+                            ImGui::Text("Mesh Type: %s", meshName.c_str());
+
+                            if (meshName.find("Cube") != std::string::npos)
+                            {
+                                static float cubeSize = 1.0f;
+                                ImGui::DragFloat("Size##Cube", &cubeSize, 0.1f, 0.1f, 10.0f);
+                                if (ImGui::Button("Apply##Cube"))
+                                {
+                                    meshRenderer->SetMesh(MeshUtilities::CreateCube("Modified Cube", cubeSize));
+                                }
+                            }
+                            else if (meshName.find("Sphere") != std::string::npos)
+                            {
+                                static float radius = 1.0f;
+                                static int segments = 24, rings = 24;
+                                ImGui::DragFloat("Radius##Sphere", &radius, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragInt("Segments##Sphere", &segments, 1, 3, 64);
+                                ImGui::DragInt("Rings##Sphere", &rings, 1, 3, 64);
+                                if (ImGui::Button("Apply##Sphere"))
+                                {
+                                    meshRenderer->SetMesh(MeshUtilities::CreateUVSphere("Modified Sphere", radius, segments, rings));
+                                }
+                            }
+                            else if (meshName.find("Stair") != std::string::npos)
+                            {
+                                static float stepWidth = 1.0f, stepHeight = 0.2f, stepDepth = 1.0f;
+                                static int stepCount = 5;
+                                ImGui::DragFloat("Width##Stair", &stepWidth, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragFloat("Step Height##Stair", &stepHeight, 0.05f, 0.1f, 5.0f);
+                                ImGui::DragFloat("Step Depth##Stair", &stepDepth, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragInt("Step Count##Stair", &stepCount, 1, 1, 50);
+                                if (ImGui::Button("Apply##Stair"))
+                                {
+                                    meshRenderer->SetMesh(MeshUtilities::CreateStaircase("Modified Stair", stepWidth, stepHeight, stepDepth, stepCount));
+                                }
+                            }
+                            else if (meshName.find("Torus") != std::string::npos)
+                            {
+                                static float majorRadius = 1.0f, minorRadius = 0.3f;
+                                static int segments = 24, rings = 24;
+                                ImGui::DragFloat("Major Radius##Torus", &majorRadius, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragFloat("Minor Radius##Torus", &minorRadius, 0.05f, 0.1f, 5.0f);
+                                ImGui::DragInt("Segments##Torus", &segments, 1, 3, 64);
+                                ImGui::DragInt("Rings##Torus", &rings, 1, 3, 64);
+                                if (ImGui::Button("Apply##Torus"))
+                                {
+                                    meshRenderer->SetMesh(MeshUtilities::CreateTorus("Modified Torus", majorRadius, minorRadius, segments, rings));
+                                }
+                            }
+                        }
                     }
                     else
                     {
