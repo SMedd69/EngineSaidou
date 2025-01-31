@@ -17,8 +17,8 @@ void Engine::Run(bool running)
 
     // Log du démarrage avec dessin
     PrintStartBanner();
-    std::string titleWindow = "Engine Saidou : " + std::to_string(ImGui::GetFrameCount()) + "fps";
-    Window* window = new Window(1920, 1080, titleWindow.c_str());
+    std::string titleWindow = "Engine Saidou : 0 fps";
+    Window* window = new Window(1920, 1080, titleWindow);
 
     ImGUITest* imGuiTest = new ImGUITest(window->GetWindow());
 
@@ -29,13 +29,30 @@ void Engine::Run(bool running)
 
     InputSystem* inputSystem = InputSystem::Instance();
 
-
     float cameraAngle = 0.0f;
     float stepLight = 1.0f;
+
+    // Variables pour le calcul du FPS
+    double lastTime = glfwGetTime();
+    int frameCount = 0;
 
     // Dans la boucle principale, juste avant de dessiner
     while (!glfwWindowShouldClose(window->GetWindow()) && running)
     {
+        double currentTime = glfwGetTime();
+        frameCount++;
+
+        // Mettre à jour le titre chaque seconde
+        if (currentTime - lastTime >= 1.0)
+        {
+            int fps = frameCount;
+            titleWindow = "Engine Saidou : " + std::to_string(fps) + " fps";
+            glfwSetWindowTitle(window->GetWindow(), titleWindow.c_str());
+
+            frameCount = 0;
+            lastTime = currentTime;
+        }
+
         glfwPollEvents();
         inputSystem->ProcessInput(window);
 

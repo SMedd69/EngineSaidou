@@ -3764,3 +3764,356 @@
 [SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
 [SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
 [SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:03:02 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:03:26 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:04:46 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:06:02 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:10:15 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 10:12:31 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:22:39 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 10:23:16 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:30:15 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 10:31:47 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:35:55 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 10:38:51 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:40:49 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 10:42:53 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:49:56 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 10:51:49 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 10:52:32 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 11:32:10 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 11:39:00 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 11:44:09 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 11:45:09 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 11:45:43 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 11:47:44 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 11:48:41 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 12:03:20 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 12:12:48 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 12:13:42 2025
+
+[INFO] _____________________________
+
+[INFO] _____________________________
+
+[SUCCESS]     Program Starting...
+[WARNING]     Start Time: Fri Jan 31 12:20:39 2025
+
+[INFO] _____________________________
+
+[SUCCESS] GLFW is Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:141)
+[SUCCESS] Window Created. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:179)
+[SUCCESS] GLAD Initialized. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Window.cpp:162)
+[SUCCESS] Vertex Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:42)
+[SUCCESS] Fragment Shader is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:69)
+[SUCCESS] Shader Program is Compiled. (C:/Users/smedd/Desktop/EngineSaidou/src/Engine/Shader.cpp:99)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureFace.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[SUCCESS] Texture: assets/textures/Damiers/CubeTextureSpecular.png is loaded. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:27)
+[SUCCESS] Texture data is updated. (C:/Users/smedd/Desktop/EngineSaidou/src/Utilities/Texture.cpp:61)
+[INFO] _____________________________
+
+[SUCCESS]     Program Stopped
+[WARNING]     End Time: Fri Jan 31 12:24:41 2025
+
+[INFO] _____________________________
+

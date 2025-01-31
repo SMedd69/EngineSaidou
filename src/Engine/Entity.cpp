@@ -72,7 +72,7 @@ const std::vector<Component*>& Entity::GetAllComponents()const
 	return m_componentAll;
 }
 
-void Entity::SetNameEntity(std::string& nameEntity)
+void Entity::SetNameEntity(const std::string& nameEntity)
 {
 	m_nameEntity = nameEntity;
 }

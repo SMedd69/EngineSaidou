@@ -21,7 +21,7 @@ public:
 	virtual void Start();
 	virtual void Update();
 
-	void SetNameEntity(std::string& nameEntity);
+	void SetNameEntity(const std::string& nameEntity);
 
 	const std::string& GetName()const;
 	const std::vector<Component*>& GetAllComponents()const;

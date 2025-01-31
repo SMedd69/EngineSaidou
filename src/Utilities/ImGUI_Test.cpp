@@ -123,7 +123,14 @@ void World::RenderUiGui()
     ImGui::Begin("Create Water");
     if (ImGui::Button("Create Water##CreateWater"))
     {
-        CreateMeshCube(MeshUtilities::CreateWaterMesh("New Water Mesh", 1, 1, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f), "New Water");  // Crée une nouvelle entité de type Water
+        CreateMeshCube(MeshUtilities::CreateWaterMesh("New Water Mesh", 1, 1, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.1f), "New Water");  // Crée une nouvelle entité de type Water
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Terrain Procedural");
+    if (ImGui::Button("Create Terrain Procedural##CreateTerrainProcedural"))
+    {
+        CreateMeshCube(MeshUtilities::CreateProceduralTerrain("New Terrain Procedural", 1, 1, 1, 1, 1, 1), "New Terrain Procedural");  // Crée une nouvelle entité de type Terrain Procedural
     }
     ImGui::End();
 
@@ -222,6 +229,18 @@ void World::RenderComponentsUI()
         // Titre collapsible pour chaque entité
         if (ImGui::CollapsingHeader((entity->GetName() + "##" + std::to_string(reinterpret_cast<std::uintptr_t>(entity))).c_str()))
         {
+            // Buffer de nom propre à chaque entité
+            std::string entityName = entity->GetName();
+            char nameBuffer[256];
+            strncpy(nameBuffer, entityName.c_str(), sizeof(nameBuffer));
+            nameBuffer[sizeof(nameBuffer) - 1] = '\0'; // Assurer la terminaison correcte
+
+            if (ImGui::InputText(("Name##" + std::to_string(reinterpret_cast<std::uintptr_t>(entity))).c_str(),
+                                nameBuffer, sizeof(nameBuffer), ImGuiInputTextFlags_EnterReturnsTrue))
+            {
+                entity->SetNameEntity(std::string(nameBuffer));
+            }
+
             // Affichage des composants de l'entité
             std::vector<Component*> components = entity->GetAllComponents();
 
@@ -392,18 +411,35 @@ void World::RenderComponentsUI()
                             else if (meshName.find("Water") != std::string::npos)
                             {
                                 static int width = 1, height = 1;
-                                static float tileSize = 10, waveHeight = 10, waveLength = 1, waveSpeed = 0.1f, waveSteepness = 0.3f;
+                                static float tileSize = 10, waveHeight = 10, waveLength = 1, waveSpeed = 0.1f, waveSteepness = 0.3f, time = 0.1f;
                                 static bool polygonMode;
                                 ImGui::DragInt("Width##Water", &width, 1, 3, 1);
                                 ImGui::DragInt("Height##Water", &height, 1, 3, 1);
-                                ImGui::DragFloat("TileSize##Water", &tileSize, 0.1f, 0.1f, 10.0f);
-                                ImGui::DragFloat("WaveHeight##Water", &waveHeight, 0.1f, 0.1f, 10.0f);
-                                ImGui::DragFloat("WaveSpeed##Water", &waveSpeed, 0.1f, 0.1f, 10.0f);
-                                ImGui::DragFloat("WaveSteepness##Water", &waveSteepness, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragFloat("TileSize##Water", &tileSize, 0.1f, -500.f, 500.f);
+                                ImGui::DragFloat("WaveHeight##Water", &waveHeight, 0.1f, 0.1f);
+                                ImGui::DragFloat("WaveSpeed##Water", &waveSpeed, 0.1f, 0.1f);
+                                ImGui::DragFloat("WaveSteepness##Water", &waveSteepness, 0.1f, 0.1f);
+                                ImGui::DragFloat("Time##Water", &time, 0.1f);
                                 ImGui::Checkbox("PolygonMode Fill##Water", &polygonMode);
 
                                 meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
-                                meshRenderer->SetMesh(MeshUtilities::CreateWaterMesh("Modified Water", width, height, tileSize, waveHeight, waveLength, waveSpeed, waveSteepness));
+                                meshRenderer->SetMesh(MeshUtilities::CreateWaterMesh("Modified Water", width, height, tileSize, waveHeight, waveLength, waveSpeed, waveSteepness, time));
+                            }
+                            else if (meshName.find("Terrain Procedural") != std::string::npos)
+                            {
+                                static int width = 1, height = 1;
+                                static float tileSize, maxHeight, noiseScale, noiseStrength;
+                                static bool polygonMode;
+                                ImGui::DragInt("Width##TerrainProcedural", &width, 1, 3, 1);
+                                ImGui::DragInt("Height##TerrainProcedural", &height, 1, 3, 1);
+                                ImGui::DragFloat("TileSize##TerrainProcedural", &tileSize, 0.1f, -500.f, 500.f);
+                                ImGui::DragFloat("MaxHeight##TerrainProcedural", &maxHeight, 0.1f, 0.1f);
+                                ImGui::DragFloat("NoiseScale##TerrainProcedural", &noiseScale, 0.1f, 0.1f);
+                                ImGui::DragFloat("NoiseStrength##TerrainProcedural", &noiseStrength, 0.1f, 0.1f);
+                                ImGui::Checkbox("PolygonMode Fill##TerrainProcedural", &polygonMode);
+
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
+                                meshRenderer->SetMesh(MeshUtilities::CreateProceduralTerrain("Modified Terrain Procedural", width, height, tileSize, maxHeight, noiseScale, noiseStrength));
                             }
                         }
                     }
