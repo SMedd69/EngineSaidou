@@ -27,6 +27,7 @@
 
             float m_near = 0.1f;
             float m_far = 1000.0f;
+            float m_fov = 60.0f;
         
         protected:
 
@@ -41,6 +42,7 @@
             void SetNear(float _near);
             void SetFar(float _far);
             void SetFov(float fov);
+            void ApplyFov();
 
             // To String()
             std::string ToString()const;
@@ -51,6 +53,7 @@
 
             float GetNear()const;
             float GetFar()const;
+            float GetFov()const;
             float GetSize()const;
             bool GetSizeType()const;
 

@@ -70,7 +70,7 @@ void World::InitWorld()
 {
     InitAssets();
 
-    // Initialiser la caméra
+    /* // Initialiser la caméra
     Vector3 cameraPosition = Vector3(0.0f, 0.5f, -10.8f);
     Vector3 cameraAngles = Vector3(0.0f, 0.0f, 0.0f);
     
@@ -89,9 +89,9 @@ void World::InitWorld()
         cameraComponent->SetAngle(cameraAngles);
         cameraComponent->SetProjectionMode(Camera::EProjectionMode::PERSPECTIVE);
         cameraComponent->SetFov(60.0f);
-    }
+    } */
 
-    std::string nameEntityCube = "Sphere";
+    /* std::string nameEntityCube = "Sphere";
 
     // Initialiser le cube
     Entity* cubeEntity = CreateEntity<Entity>();
@@ -175,7 +175,7 @@ void World::InitWorld()
 
         // DirectionalLightControllerComponent* dLightControllerComponent = lightEntity->AddComponent<DirectionalLightControllerComponent>();
         // dLightControllerComponent->SetDirectionalLightComponent(dLightComponent);
-    }
+    } */
 
     // Démarrer chaque entité
     for (auto it = m_entities.begin(); it != m_entities.end(); ++it)

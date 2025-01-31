@@ -3,6 +3,7 @@
 #include <Engine/AssetsManager.h>
 #include <Engine/World.h>
 #include <Engine/DirectionalLight.h>
+#include <Math/Mathf.h>
 
 ImGUITest::ImGUITest(GLFWwindow* window)
     : m_window(window)
@@ -26,28 +27,6 @@ void ImGUITest::Init()
 
 void World::RenderUiGui()
 {
-    ImGui::Begin("yoo");
-
-    // Vérification : S'il y a au moins une caméra
-    if (!m_cameras.empty())
-    {
-        Camera* camera = *m_cameras.begin();
-        Vector3 position = camera->GetPosition();
-        Vector3 angles = camera->GetAngle();
-
-        // Contrôles de la caméra
-        if (ImGui::CollapsingHeader("Camera Controls"))
-        {
-            ImGui::Text("Position");
-            ImGui::DragFloat3("Position##CameraPosition", &position.m_x, 0.1f);
-            camera->SetPosition(position);
-
-            ImGui::Text("Rotation");
-            ImGui::DragFloat3("Rotation##CameraRotation", &angles.m_x, 0.1f);
-            camera->SetAngle(angles);
-        }
-    }
-    ImGui::End();
 
     // Fenêtre pour créer des entités
     ImGui::Begin("Create Cube");
@@ -119,7 +98,7 @@ void World::RenderUiGui()
         CreateMeshCube(MeshUtilities::CreateCapsule("New Capsule", 1.0f, 2.0f, 24, 24), "New Capsule");  // Crée une nouvelle entité de type Capsule
     }
     ImGui::End();
-    
+
     ImGui::Begin("Create Water");
     if (ImGui::Button("Create Water##CreateWater"))
     {
@@ -133,6 +112,32 @@ void World::RenderUiGui()
         CreateMeshCube(MeshUtilities::CreateProceduralTerrain("New Terrain Procedural", 1, 1, 1, 1, 1, 1), "New Terrain Procedural");  // Crée une nouvelle entité de type Terrain Procedural
     }
     ImGui::End();
+    
+    ImGui::Begin("Create Camera");
+    if (ImGui::Button("Create Camera##CreateCamera"))
+    {
+        // Initialiser la caméra
+        Vector3 cameraPosition = Vector3(0.0f, 0.5f, -10.8f);
+        Vector3 cameraAngles = Vector3(0.0f, 0.0f, 0.0f);
+        
+        std::string nameEntityCamera = "Camera";
+
+        Entity* cameraEntity = CreateEntity<Entity>();
+        {
+            cameraEntity->SetNameEntity(nameEntityCamera);
+            Camera* cameraComponent = cameraEntity->AddComponent<Camera>();
+            if (!cameraComponent)
+            {
+                std::cerr << "Failed to create Camera Component" << std::endl;
+                return;
+            }
+            cameraComponent->SetPosition(cameraPosition);
+            cameraComponent->SetAngle(cameraAngles);
+            cameraComponent->SetProjectionMode(Camera::EProjectionMode::PERSPECTIVE);
+            cameraComponent->SetFov(60.0f);
+        }
+    }
+    ImGui::End();
 
     // Affiche les composants de chaque entité
     RenderComponentsUI();
@@ -143,9 +148,9 @@ void World::RenderUiGui()
 void World::CreateMeshCube(Mesh* meshObj, std::string nameEntity)
 {
     // Position, rotation et échelle par défaut du cube
-    Vector3 cubePosition(0.0f, 0.0f, 5.0f);
-    Vector3 cubeScale(1.0f, 1.0f, 1.0f);
-    Quaternion cubeRotation = Quaternion::Identity();
+    // Vector3 cubePosition(0.0f, 0.0f, 5.0f);
+    // Vector3 cubeScale(1.0f, 1.0f, 1.0f);
+    // Quaternion cubeRotation = Quaternion::Identity();
 
     // Crée une nouvelle entité pour le cube
     Entity* cubeEntity = CreateEntity<Entity>();
@@ -167,9 +172,9 @@ void World::CreateMeshCube(Mesh* meshObj, std::string nameEntity)
     else
     std::cout << "Success to create Transform Component for Cube." << std::endl;
 
-    transformComponent->SetPosition(cubePosition);
-    transformComponent->SetScale(cubeScale);
-    transformComponent->SetRotation(cubeRotation);
+    // transformComponent->SetPosition(cubePosition);
+    // transformComponent->SetScale(cubeScale);
+    // transformComponent->SetRotation(cubeRotation);
 
     // Ajout et configuration du MeshRenderer
     MeshRenderer* meshRenderer = cubeEntity->AddComponent<MeshRenderer>();
@@ -266,11 +271,34 @@ void World::RenderComponentsUI()
 
                         ImGui::DragFloat3(("Position##TransformPosition_" + std::to_string(i)).c_str(), &position.m_x, 0.1f);
                         ImGui::DragFloat3(("Scale##TransformScale_" + std::to_string(i)).c_str(), &scale.m_x, 0.1f);
-                        ImGui::DragFloat4(("Rotation (Quat)##TransformRotation_" + std::to_string(i)).c_str(), &rotation.m_x, 0.1f);
+                        ImGui::DragFloat3(("Rotation##TransformRotation_" + std::to_string(i)).c_str(), &rotation.m_x, 0.1f);
+
 
                         transform->SetPosition(position);
                         transform->SetScale(scale);
-                        transform->SetRotation(rotation);
+                        transform->SetEulerAngles({rotation.m_x, rotation.m_y, rotation.m_z});
+                    }
+                    else if (Camera* camera = dynamic_cast<Camera*>(component))
+                    {
+                        ImGui::Text("Camera:");
+                        Vector3 position = camera->GetPosition();
+                        Vector3 angles = camera->GetAngle();
+
+                        float _near = camera->GetNear();
+                        float _far = camera->GetFar();
+                        float _fov = camera->GetFov();
+
+                        ImGui::DragFloat3("Position##CameraPosition", &position.m_x, 0.1f);
+                        ImGui::DragFloat3("Rotation##CameraRotation", &angles.m_x, 0.1f);
+                        ImGui::DragFloat("FieldOfView##CameraFov", &_fov, 0.1f);
+                        ImGui::DragFloat("Near##CameraNear", &_near, 0.1f);
+                        ImGui::DragFloat("Far##CameraFar", &_far, 0.1f);
+
+                        camera->SetPosition(position);
+                        camera->SetAngle(angles);
+                        camera->SetFov(_fov);
+                        camera->SetNear(_near);
+                        camera->SetFar(_far);
                     }
                     else if (Light* light = dynamic_cast<Light*>(component))
                     {
@@ -351,16 +379,23 @@ void World::RenderComponentsUI()
                                 static float stepWidth = 1.0f, stepHeight = 0.2f, stepDepth = 1.0f;
                                 static int stepCount = 5;
                                 static bool polygonMode;
+                                static bool autoApply = false;
                                 ImGui::DragFloat("Width##Stair", &stepWidth, 0.1f, 0.1f, 10.0f);
                                 ImGui::DragFloat("Step Height##Stair", &stepHeight, 0.05f, 0.1f, 5.0f);
                                 ImGui::DragFloat("Step Depth##Stair", &stepDepth, 0.1f, 0.1f, 10.0f);
                                 ImGui::DragInt("Step Count##Stair", &stepCount, 1, 1, 50);
                                 ImGui::Checkbox("PolygonMode Fill##Stair", &polygonMode);
+                                ImGui::Checkbox("Auto Apply##Stair", &autoApply);
                                 meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
-                                if (ImGui::Button("Apply##Stair"))
+                                if(autoApply)
                                 {
+                                    if (ImGui::Button("Apply##Stair"))
+                                    {
+                                        meshRenderer->SetMesh(MeshUtilities::CreateStaircase("Modified Stair", stepWidth, stepHeight, stepDepth, stepCount));
+                                    }
+                                } else
                                     meshRenderer->SetMesh(MeshUtilities::CreateStaircase("Modified Stair", stepWidth, stepHeight, stepDepth, stepCount));
-                                }
+
                             }
                             else if (meshName.find("Torus") != std::string::npos)
                             {

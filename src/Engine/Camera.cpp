@@ -59,13 +59,21 @@ void Camera::SetNear(float _near)
 void Camera::SetFar(float far)
 {
 	m_far = far;
+    ApplyFov();
 }
+
 
 void Camera::SetFov(float fov)
 {
-	float fovInRadian = fov * M_PI / 180.0f;
+	m_fov = fov;
+}
+
+void Camera::ApplyFov()
+{
+	float fovInRadian = m_fov * M_PI / 180.0f;
 
 	m_size = 2.0f * m_near * tan(fovInRadian / 2.0f);
+    std::cout << "ApplyFov used: " << m_size << std::endl;
 }
 
 float Camera::GetSize() const
@@ -76,6 +84,21 @@ float Camera::GetSize() const
 Vector3 Camera::GetAngle()const
 {
 	return m_angle;
+}
+
+float Camera::GetNear()const
+{
+	return m_near;
+}
+
+float Camera::GetFar()const
+{
+	return m_far;
+}
+
+float Camera::GetFov()const
+{
+	return m_fov;
 }
 
 void Camera::SetSizeType(bool isHorizontal)
