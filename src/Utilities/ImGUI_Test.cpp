@@ -3,6 +3,8 @@
 #include <Engine/AssetsManager.h>
 #include <Engine/World.h>
 #include <Engine/DirectionalLight.h>
+#include <Engine/PointLight.h>
+#include <Engine/SpotLight.h>
 #include <Math/Mathf.h>
 
 ImGUITest::ImGUITest(GLFWwindow* window)
@@ -135,6 +137,93 @@ void World::RenderUiGui()
             cameraComponent->SetAngle(cameraAngles);
             cameraComponent->SetProjectionMode(Camera::EProjectionMode::PERSPECTIVE);
             cameraComponent->SetFov(60.0f);
+        }
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Directional Light");
+    if (ImGui::Button("Create Directional Light##DirectionalLight"))
+    {   
+        std::string nameEntityCamera = "Directional Light";
+
+        Entity* cameraEntity = CreateEntity<Entity>();
+        {
+            cameraEntity->SetNameEntity(nameEntityCamera);
+            Transform* transform = cameraEntity->AddComponent<Transform>();
+            if (!transform)
+            {
+                std::cerr << "Failed to create Transform Component" << std::endl;
+                return;
+            }
+            transform->SetPosition({0, 0, 0});
+            transform->SetScale({1, 1, 1});
+            transform->SetRotation(Quaternion::Identity());
+
+            DirectionalLight* directionalLight = cameraEntity->AddComponent<DirectionalLight>();
+            if (!directionalLight)
+            {
+                std::cerr << "Failed to create Camera Component" << std::endl;
+                return;
+            }
+            directionalLight->SetTypeLight(Light::LightType::Directional);
+        }
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Point Light");
+    if (ImGui::Button("Create Point Light##PointLight"))
+    {   
+        std::string nameEntityCamera = "Point Light";
+
+        Entity* cameraEntity = CreateEntity<Entity>();
+        {
+            cameraEntity->SetNameEntity(nameEntityCamera);
+            Transform* transform = cameraEntity->AddComponent<Transform>();
+            if (!transform)
+            {
+                std::cerr << "Failed to create Transform Component" << std::endl;
+                return;
+            }
+            transform->SetPosition({0, 0, 0});
+            transform->SetScale({1, 1, 1});
+            transform->SetRotation(Quaternion::Identity());
+
+            PointLight* pointLight = cameraEntity->AddComponent<PointLight>();
+            if (!pointLight)
+            {
+                std::cerr << "Failed to create Camera Component" << std::endl;
+                return;
+            }
+            pointLight->SetTypeLight(Light::LightType::Point);
+        }
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Spot Light");
+    if (ImGui::Button("Create Spot Light##SpotLight"))
+    {   
+        std::string nameEntityCamera = "Spot Light";
+
+        Entity* cameraEntity = CreateEntity<Entity>();
+        {
+            cameraEntity->SetNameEntity(nameEntityCamera);
+            Transform* transform = cameraEntity->AddComponent<Transform>();
+            if (!transform)
+            {
+                std::cerr << "Failed to create Transform Component" << std::endl;
+                return;
+            }
+            transform->SetPosition({0, 0, 0});
+            transform->SetScale({1, 1, 1});
+            transform->SetRotation(Quaternion::Identity());
+
+            SpotLight* spotLight = cameraEntity->AddComponent<SpotLight>();
+            if (!spotLight)
+            {
+                std::cerr << "Failed to create Camera Component" << std::endl;
+                return;
+            }
+            spotLight->SetTypeLight(Light::LightType::Spot);
         }
     }
     ImGui::End();
@@ -300,7 +389,7 @@ void World::RenderComponentsUI()
                         camera->SetNear(_near);
                         camera->SetFar(_far);
                     }
-                    else if (Light* light = dynamic_cast<Light*>(component))
+                    /* else if (Light* light = dynamic_cast<Light*>(component))
                     {
                         ImGui::Text("Light:");
                         const char* lightTypeNames[] = {"Directional", "Point", "Spot"};
@@ -315,16 +404,46 @@ void World::RenderComponentsUI()
                         ImGui::ColorEdit4(("Specular Color##LightSpecularColor_" + std::to_string(i)).c_str(), &light->m_specularColor.m_r);
                         ImGui::DragFloat(("Intensity##LightIntensity_" + std::to_string(i)).c_str(), &light->m_intensity, 0.1f);
 
-                    }
+                    } */
                     else if (DirectionalLight* dLight = dynamic_cast<DirectionalLight*>(component))
                     {
                         ImGui::Text("Directional Light:");
-                        Vector3 positionDLight = dLight->m_direction;
+
                         ImGui::ColorEdit4(("Ambient Color##LightAmbientColor_" + std::to_string(i)).c_str(), &dLight->m_ambiantColor.m_r);
                         ImGui::ColorEdit4(("Specular Color##LightSpecularColor_" + std::to_string(i)).c_str(), &dLight->m_specularColor.m_r);
+                        ImGui::ColorEdit4(("Diffuse Color##SpotLightDiffuseColor_" + std::to_string(i)).c_str(), &dLight->m_diffuseColor.m_r);
+                        ImGui::DragFloat3(("Direction##LightDirection_" + std::to_string(i)).c_str(), &dLight->m_direction.m_x, 0.1f);
                         ImGui::DragFloat(("Intensity##LightIntensity_" + std::to_string(i)).c_str(), &dLight->m_intensity, 0.1f);
-                        ImGui::DragFloat3(("Position##LightPosition_" + std::to_string(i)).c_str(), &dLight->m_direction.m_x, 0.1f);
 
+                    }
+                    else if (PointLight* pLight = dynamic_cast<PointLight*>(component))
+                    {
+                        ImGui::Text("Point Light:");
+
+                        ImGui::ColorEdit4(("Ambient Color##PointLightAmbientColor_" + std::to_string(i)).c_str(), &pLight->m_ambiantColor.m_r);
+                        ImGui::ColorEdit4(("Specular Color##PointLightSpecularColor_" + std::to_string(i)).c_str(), &pLight->m_specularColor.m_r);
+                        ImGui::ColorEdit4(("Diffuse Color##SpotLightDiffuseColor_" + std::to_string(i)).c_str(), &pLight->m_diffuseColor.m_r);
+                        ImGui::DragFloat3(("Position##PointLightPosition_" + std::to_string(i)).c_str(), &pLight->m_position.m_x, 0.1f);
+                        ImGui::DragFloat(("Intensity##PointLightIntensity_" + std::to_string(i)).c_str(), &pLight->m_intensity, 0.1f);
+                        ImGui::DragFloat(("ConstantValue##PointLightConstantValue_" + std::to_string(i)).c_str(), &pLight->m_constantValue, 0.1f);
+                        ImGui::DragFloat(("LinearValue##PointLightLinearValue_" + std::to_string(i)).c_str(), &pLight->m_linearValue, 0.1f);
+                        ImGui::DragFloat(("QuadraticValue##PointLightQuadraticValue_" + std::to_string(i)).c_str(), &pLight->m_quadraticValue, 0.1f);
+                    }
+                    else if (SpotLight* sLight = dynamic_cast<SpotLight*>(component))
+                    {
+                        ImGui::Text("Spot Light:");
+
+                        ImGui::ColorEdit4(("Ambient Color##SpotLightAmbientColor_" + std::to_string(i)).c_str(), &sLight->m_ambiantColor.m_r);
+                        ImGui::ColorEdit4(("Diffuse Color##SpotLightDiffuseColor_" + std::to_string(i)).c_str(), &sLight->m_diffuseColor.m_r);
+                        ImGui::ColorEdit4(("Specular Color##SpotLightSpecularColor_" + std::to_string(i)).c_str(), &sLight->m_specularColor.m_r);
+                        ImGui::DragFloat3(("Position##SpotLightPosition_" + std::to_string(i)).c_str(), &sLight->m_position.m_x, 0.1f);
+                        ImGui::DragFloat3(("Direction##SpotLightDirection" + std::to_string(i)).c_str(), &sLight->m_direction.m_x, 0.1f);
+                        ImGui::DragFloat(("Intensity##SpotLightIntensity_" + std::to_string(i)).c_str(), &sLight->m_intensity, 0.1f);
+                        ImGui::DragFloat(("SpotAngle##SpotAngle_" + std::to_string(i)).c_str(), &sLight->m_spotAngle, 0.1f);
+                        ImGui::DragFloat(("SmoothValue##SpotLightSmoothValue_" + std::to_string(i)).c_str(), &sLight->m_spotSmoothValue, 0.1f);
+                        ImGui::DragFloat(("ConstantValue##SpotLightConstantValue_" + std::to_string(i)).c_str(), &sLight->m_constantValue, 0.1f);
+                        ImGui::DragFloat(("LinearValue##SpotLightLinearValue_" + std::to_string(i)).c_str(), &sLight->m_linearValue, 0.1f);
+                        ImGui::DragFloat(("QuadraticValue##SpotLightQuadraticValue_" + std::to_string(i)).c_str(), &sLight->m_quadraticValue, 0.1f);
                     }
                     else if (MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component))
                     {

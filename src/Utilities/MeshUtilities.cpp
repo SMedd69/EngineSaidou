@@ -1374,7 +1374,7 @@ Mesh* MeshUtilities::CreateTerrainMesh(const std::string& assetName, int width, 
 
 Mesh* MeshUtilities::CreateProceduralTerrain(const std::string& assetName, int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength)
 {
-    Mesh* mesh = AssetsManager::CreateMesh(assetName, false);
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     if (!mesh) {
         std::cerr << "Erreur : Impossible de créer le mesh " << assetName << std::endl;
         return nullptr;
