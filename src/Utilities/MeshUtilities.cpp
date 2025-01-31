@@ -1241,12 +1241,15 @@ Mesh* MeshUtilities::CreateStaircase(const std::string& assetName, float width, 
 }
 
 // Creation D'un Mesh pour l'eau et les vagues
-Mesh* MeshUtilities::CreateWaterMesh(const std::string& assetName, int width, int height, float tileSize, float waveHeight, float waveLength, float waveSpeed, float waveSteepness)
+Mesh* MeshUtilities::CreateWaterMesh(const std::string& assetName, int width, int height, float tileSize, float waveHeight, float waveLength, float waveSpeed, float waveSteepness, float time)
 {
     Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
     std::vector<Vector3> vertices;
     std::vector<Vector2> uvs;
     std::vector<unsigned int> indices;
+
+    float k = 2.0f * M_PI / waveLength;
+    float w = waveSpeed * k;
 
     // Créer les sommets
     for (int z = 0; z < height; z++)
@@ -1256,7 +1259,15 @@ Mesh* MeshUtilities::CreateWaterMesh(const std::string& assetName, int width, in
             float xPos = x * tileSize;
             float zPos = z * tileSize;
 
-            vertices.push_back(Vector3(xPos, 0, zPos));
+            // Utilisation de Gerstner Waves pour appliquer une courbure à la vague
+            float theta = k * xPos + w * time;
+            float yPos = waveHeight * sin(theta);
+
+            // Appliquer la raideur des vagues en décalant aussi X et Z (effet Gerstner)
+            float xOffset = waveSteepness * waveHeight * cos(theta);
+            float zOffset = waveSteepness * waveHeight * sin(theta);
+
+            vertices.push_back(Vector3(xPos + xOffset, yPos, zPos + zOffset));
             uvs.push_back(Vector2((float)x / width, (float)z / height));
         }
     }
@@ -1363,7 +1374,11 @@ Mesh* MeshUtilities::CreateTerrainMesh(const std::string& assetName, int width, 
 
 Mesh* MeshUtilities::CreateProceduralTerrain(const std::string& assetName, int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength)
 {
-    Mesh* mesh = AssetsManager::CreateMesh(assetName, true); // Nouveau mesh pour le terrain
+    Mesh* mesh = AssetsManager::CreateMesh(assetName, true);
+    if (!mesh) {
+        std::cerr << "Erreur : Impossible de créer le mesh " << assetName << std::endl;
+        return nullptr;
+    }
 
     std::vector<Vector3> vertices;
     std::vector<unsigned int> indices;
@@ -1380,12 +1395,18 @@ Mesh* MeshUtilities::CreateProceduralTerrain(const std::string& assetName, int w
             float xPos = x * tileSize - halfWidth;
             float zPos = z * tileSize - halfHeight;
 
-            // Ajouter du bruit pour les hauteurs
-            float noiseValue = Mathf::PerlinNoise(x * noiseScale, z * noiseScale) * noiseStrength;
+            // Vérification de Perlin Noise pour éviter le crash
+            float noiseValue = 0.0f;
+            noiseValue = Mathf::PerlinNoise(x * noiseScale, z * noiseScale) * noiseStrength;
+
+            // try {
+            // } catch (...) {
+            //     std::cerr << "Erreur dans PerlinNoise pour x=" << x << " z=" << z << std::endl;
+            // }
             float yPos = noiseValue * maxHeight;
 
             vertices.push_back(Vector3(xPos, yPos, zPos));
-            uvs.push_back(Vector2((float)x / (width - 1), (float)z / (height - 1))); // Coordonnées UV
+            uvs.push_back(Vector2((float)x / (width - 1), (float)z / (height - 1)));
         }
     }
 
@@ -1399,15 +1420,15 @@ Mesh* MeshUtilities::CreateProceduralTerrain(const std::string& assetName, int w
             int bottomLeft = (z + 1) * width + x;
             int bottomRight = bottomLeft + 1;
 
-            // Premier triangle
-            indices.push_back(topLeft);
-            indices.push_back(bottomLeft);
-            indices.push_back(topRight);
+            if (bottomRight < vertices.size()) {
+                indices.push_back(topLeft);
+                indices.push_back(bottomLeft);
+                indices.push_back(topRight);
 
-            // Second triangle
-            indices.push_back(topRight);
-            indices.push_back(bottomLeft);
-            indices.push_back(bottomRight);
+                indices.push_back(topRight);
+                indices.push_back(bottomLeft);
+                indices.push_back(bottomRight);
+            }
         }
     }
 
@@ -1416,8 +1437,9 @@ Mesh* MeshUtilities::CreateProceduralTerrain(const std::string& assetName, int w
     mesh->SetIndices(indices);
     mesh->SetUVs(uvs);
     mesh->ComputeNormals();
-    return mesh; // Retourner le mesh généré
+    return mesh;
 }
+
 
 // Fonction auxiliaire pour obtenir le point médian
 int MeshUtilities::GetMiddlePoint(int i0, int i1, std::vector<Vector3>& vertices, std::map<std::pair<int, int>, int>& middleCache, float radius)

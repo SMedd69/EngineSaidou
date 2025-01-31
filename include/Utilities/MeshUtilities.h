@@ -43,7 +43,7 @@
         static Mesh* CreateCircle(const std::string& assetName, float radius);
         static Mesh* CreateGrid(const std::string& assetName, int widthTileCount, int heightTileCount);
 
-        static Mesh* CreateWaterMesh(const std::string& assetName, int width, int height, float tileSize, float waveHeight, float waveLength, float waveSpeed, float waveSteepness);
+        static Mesh* CreateWaterMesh(const std::string& assetName, int width, int height, float tileSize, float waveHeight, float waveLength, float waveSpeed, float waveSteepness, float time);
         static Mesh* CreateTerrainMesh(const std::string& assetName, int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength);
         static Mesh* CreateProceduralTerrain(const std::string& assetName, int width, int height, float tileSize, float maxHeight, float noiseScale, float noiseStrength);
 
