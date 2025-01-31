@@ -77,7 +77,6 @@ void World::RenderUiGui()
     }
     ImGui::End();
 
-
     ImGui::Begin("Create Sphere");
     if (ImGui::Button("Create Sphere##CreateSphere"))
     {
@@ -85,6 +84,12 @@ void World::RenderUiGui()
     }
     ImGui::End();
 
+    ImGui::Begin("Create GeodesicSphere");
+    if (ImGui::Button("Create GeodesicSphere##GeodesicSphere"))
+    {
+        CreateMeshCube(MeshUtilities::CreateGeodesicSphere("New GeodesicSphere", 1.0f, 3), "New GeodesicSphere");  // Crée une nouvelle entité de type GeodesicSphere
+    }
+    ImGui::End();
 
     ImGui::Begin("Create Plane");
     if (ImGui::Button("Create Plane##CreatePlane"))
@@ -132,6 +137,13 @@ void World::RenderUiGui()
     if (ImGui::Button("Create Capsule##CreateCapsule"))
     {
         CreateMeshCube(MeshUtilities::CreateCapsule("New Capsule", 1.0f, 2.0f, 24, 24), "New Capsule");  // Crée une nouvelle entité de type Capsule
+    }
+    ImGui::End();
+    
+    ImGui::Begin("Create Water");
+    if (ImGui::Button("Create Water##CreateWater"))
+    {
+        CreateMeshCube(MeshUtilities::CreateWaterMesh("New Water Mesh", 1, 1, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f), "New Water");  // Crée une nouvelle entité de type Water
     }
     ImGui::End();
 
@@ -211,7 +223,7 @@ void World::CreateMeshCube(Mesh* meshObj, std::string nameEntity)
 void World::RenderComponentsUI()
 {
     // Fenêtre principale pour afficher les entités et leurs composants
-    ImGui::Begin("Scene Components Viewer");
+    ImGui::Begin("Scene Components");
 
     // Vérifie si des entités sont disponibles
     if (m_entities.empty())
@@ -300,7 +312,10 @@ void World::RenderComponentsUI()
                             if (meshName.find("Cube") != std::string::npos)
                             {
                                 static float cubeSize = 1.0f;
+                                static bool polygonMode;
                                 ImGui::DragFloat("Size##Cube", &cubeSize, 0.1f, 0.1f, 10.0f);
+                                ImGui::Checkbox("PolygonMode Fill##Cube", &polygonMode);
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
                                 if (ImGui::Button("Apply##Cube"))
                                 {
                                     meshRenderer->SetMesh(MeshUtilities::CreateCube("Modified Cube", cubeSize));
@@ -310,22 +325,39 @@ void World::RenderComponentsUI()
                             {
                                 static float radius = 1.0f;
                                 static int segments = 24, rings = 24;
+                                static bool polygonMode;
                                 ImGui::DragFloat("Radius##Sphere", &radius, 0.1f, 0.1f, 10.0f);
                                 ImGui::DragInt("Segments##Sphere", &segments, 1, 3, 64);
                                 ImGui::DragInt("Rings##Sphere", &rings, 1, 3, 64);
+                                ImGui::Checkbox("PolygonMode Fill##Sphere", &polygonMode);
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
                                 if (ImGui::Button("Apply##Sphere"))
                                 {
                                     meshRenderer->SetMesh(MeshUtilities::CreateUVSphere("Modified Sphere", radius, segments, rings));
                                 }
                             }
+                            else if (meshName.find("GeodesicSphere") != std::string::npos)
+                            {
+                                static float radius = 1.0f;
+                                static int subdivisions = 3;
+                                static bool polygonMode;
+                                ImGui::DragFloat("Radius##GeodesicSphere", &radius, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragInt("Segments##GeodesicSphere", &subdivisions, 1, 3, 64);
+                                ImGui::Checkbox("PolygonMode Fill##GeodesicSphere", &polygonMode);
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
+                                meshRenderer->SetMesh(MeshUtilities::CreateGeodesicSphere("Modified GeodesicSphere", radius, subdivisions));
+                            }
                             else if (meshName.find("Stair") != std::string::npos)
                             {
                                 static float stepWidth = 1.0f, stepHeight = 0.2f, stepDepth = 1.0f;
                                 static int stepCount = 5;
+                                static bool polygonMode;
                                 ImGui::DragFloat("Width##Stair", &stepWidth, 0.1f, 0.1f, 10.0f);
                                 ImGui::DragFloat("Step Height##Stair", &stepHeight, 0.05f, 0.1f, 5.0f);
                                 ImGui::DragFloat("Step Depth##Stair", &stepDepth, 0.1f, 0.1f, 10.0f);
                                 ImGui::DragInt("Step Count##Stair", &stepCount, 1, 1, 50);
+                                ImGui::Checkbox("PolygonMode Fill##Stair", &polygonMode);
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
                                 if (ImGui::Button("Apply##Stair"))
                                 {
                                     meshRenderer->SetMesh(MeshUtilities::CreateStaircase("Modified Stair", stepWidth, stepHeight, stepDepth, stepCount));
@@ -335,14 +367,63 @@ void World::RenderComponentsUI()
                             {
                                 static float majorRadius = 1.0f, minorRadius = 0.3f;
                                 static int segments = 24, rings = 24;
+                                static bool polygonMode;
                                 ImGui::DragFloat("Major Radius##Torus", &majorRadius, 0.1f, 0.1f, 10.0f);
                                 ImGui::DragFloat("Minor Radius##Torus", &minorRadius, 0.05f, 0.1f, 5.0f);
                                 ImGui::DragInt("Segments##Torus", &segments, 1, 3, 64);
                                 ImGui::DragInt("Rings##Torus", &rings, 1, 3, 64);
+                                ImGui::Checkbox("PolygonMode Fill##Torus", &polygonMode);
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
                                 if (ImGui::Button("Apply##Torus"))
                                 {
                                     meshRenderer->SetMesh(MeshUtilities::CreateTorus("Modified Torus", majorRadius, minorRadius, segments, rings));
                                 }
+                            }
+                            else if (meshName.find("Capsule") != std::string::npos)
+                            {
+                                static float radius = 1.0f, height = 1.0f;
+                                static int segments = 24, rings = 24;
+                                static bool polygonMode;
+                                ImGui::DragFloat("Radius##Capsule", &radius, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragFloat("Height##Capsule", &height, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragInt("Segments##Capsule", &segments, 1, 3, 64);
+                                ImGui::DragInt("Rings##Capsule", &rings, 1, 3, 64);
+                                ImGui::Checkbox("PolygonMode Fill##Capsule", &polygonMode);
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
+                                if (ImGui::Button("Apply##Capsule"))
+                                {
+                                    meshRenderer->SetMesh(MeshUtilities::CreateCapsule("Modified Capsule", radius, height, segments, rings));
+                                }
+                            }
+                            else if (meshName.find("Prism") != std::string::npos)
+                            {
+                                static float size = 1.0f;
+                                static int side = 24;
+                                static bool polygonMode;
+                                ImGui::DragFloat("Size##Prism", &size, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragInt("Side##Prism", &side, 1, 3, 64);
+                                ImGui::Checkbox("PolygonMode Fill##Prism", &polygonMode);
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
+                                if (ImGui::Button("Apply##Prism"))
+                                {
+                                    meshRenderer->SetMesh(MeshUtilities::CreatePrism("Modified Prism", size, side));
+                                }
+                            }
+                            else if (meshName.find("Water") != std::string::npos)
+                            {
+                                static int width = 1, height = 1;
+                                static float tileSize = 10, waveHeight = 10, waveLength = 1, waveSpeed = 0.1f, waveSteepness = 0.3f;
+                                static bool polygonMode;
+                                ImGui::DragInt("Width##Water", &width, 1, 3, 1);
+                                ImGui::DragInt("Height##Water", &height, 1, 3, 1);
+                                ImGui::DragFloat("TileSize##Water", &tileSize, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragFloat("WaveHeight##Water", &waveHeight, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragFloat("WaveSpeed##Water", &waveSpeed, 0.1f, 0.1f, 10.0f);
+                                ImGui::DragFloat("WaveSteepness##Water", &waveSteepness, 0.1f, 0.1f, 10.0f);
+                                ImGui::Checkbox("PolygonMode Fill##Water", &polygonMode);
+
+                                meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
+                                meshRenderer->SetMesh(MeshUtilities::CreateWaterMesh("Modified Water", width, height, tileSize, waveHeight, waveLength, waveSpeed, waveSteepness));
                             }
                         }
                     }
