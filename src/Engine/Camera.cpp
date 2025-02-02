@@ -73,7 +73,6 @@ void Camera::ApplyFov()
 	float fovInRadian = m_fov * M_PI / 180.0f;
 
 	m_size = 2.0f * m_near * tan(fovInRadian / 2.0f);
-    std::cout << "ApplyFov used: " << m_size << std::endl;
 }
 
 float Camera::GetSize() const

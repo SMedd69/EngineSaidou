@@ -25,9 +25,9 @@ void Window::InitialiseGLFWCallback()
 
 			InputSystem* inputSystem = InputSystem::Instance();
 
-            std::cout << "Key: " << key << std::endl;
 			if (action == GLFW_PRESS || action == GLFW_RELEASE)
             {
+            	std::cout << "Key: " << key <<  (GLFW_PRESS ? " Down" : GLFW_RELEASE ? " Up" : "") << std::endl;
 				inputSystem->RegisterInput(win, ConvertGLFWInputKeyCode(key), ConvertGLFWInputAction(action));
             }
 		});
@@ -37,7 +37,6 @@ void Window::InitialiseGLFWCallback()
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 
 			InputSystem* inputSystem = InputSystem::Instance();
-            std::cout << "Mouse Button: " << mouseButton << std::endl;
 
 			if (action == GLFW_PRESS || action == GLFW_RELEASE)
 				inputSystem->RegisterInput(win, ConvertGLFWInputMouseCode(mouseButton), ConvertGLFWInputAction(action));
@@ -47,8 +46,7 @@ void Window::InitialiseGLFWCallback()
 		{
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 			InputSystem* inputSystem = InputSystem::Instance();
-            std::cout << "Scroll X: " << xoffset << std::endl;
-            std::cout << "Scroll Y: " << yoffset << std::endl;
+
 			if (inputSystem->GetInputState(InputCode::E_MOUSE_SCROLL_X) != (float)xoffset)
 				inputSystem->RegisterInput(win, InputCode::E_MOUSE_SCROLL_X, xoffset);
 
@@ -61,8 +59,6 @@ void Window::InitialiseGLFWCallback()
 			Window* win = (Window*)glfwGetWindowUserPointer(window);
 			InputSystem* inputSystem = InputSystem::Instance();
 
-            std::cout << "Cursor X: " << xpos << std::endl;
-            std::cout << "Cursor Y: " << ypos << std::endl;
 			if (inputSystem->GetInputState(InputCode::E_MOUSE_POS_X) != (float)xpos)
 				inputSystem->RegisterInput(win, InputCode::E_MOUSE_POS_X, xpos);
 

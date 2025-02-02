@@ -48,6 +48,7 @@ public :
 	void CreateMeshCube(Mesh* meshObj, std::string nameEntity);
 	void RenderComponentsUI();
 	void CreatedMesh();
+	void ShowMaterialUI(MeshRenderer* meshRenderer);
 };
 
 #include "Entity.h"

@@ -66,7 +66,10 @@ void Engine::Run(bool running)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         world->Update();
+        
+        ImGui::Render();
         world->Display(window);
+	    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
         glfwSwapBuffers(window->GetWindow());
     }

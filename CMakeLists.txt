@@ -88,11 +88,14 @@ add_executable(engine_saidou
     ${SRC_DIR}/Utilities/Texture.cpp
     ${SRC_DIR}/Utilities/TimeEngine.cpp
     ${SRC_DIR}/Utilities/ImGUI_Test.cpp
+    ${SRC_DIR}/Utilities/ScriptEditor.cpp
 
     ${SRC_DIR}/ImGUI/imgui.cpp
     ${SRC_DIR}/ImGUI/imgui_draw.cpp
     ${SRC_DIR}/ImGUI/imgui_tables.cpp
     ${SRC_DIR}/ImGUI/imgui_widgets.cpp
+    ${SRC_DIR}/ImGUI/ImGuiFileDialog.cpp
+    ${SRC_DIR}/ImGUI/TextEditor.cpp
     ${SRC_DIR}/ImGUI/backends/imgui_impl_glfw.cpp
     ${SRC_DIR}/ImGUI/backends/imgui_impl_opengl3.cpp
 
@@ -130,6 +133,7 @@ target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_MATH})
 target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_UTILITIES})
 target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_IMGUI})
 target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_IMGUI}/backends)
+target_include_directories(engine_saidou PRIVATE ${INCLUDE_DIR_IMGUI}/dirent)
 target_link_libraries(engine_saidou glfw3)
 
 # Copier les dossiers `assets` vers le répertoire de sortie

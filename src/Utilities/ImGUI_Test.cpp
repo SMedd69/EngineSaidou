@@ -1,11 +1,14 @@
 #include <Utilities/ImGui_Test.h>
 #include <Utilities/MeshUtilities.h>
+#include <Utilities/ScriptEditor.h>
 #include <Engine/AssetsManager.h>
 #include <Engine/World.h>
 #include <Engine/DirectionalLight.h>
 #include <Engine/PointLight.h>
 #include <Engine/SpotLight.h>
+#include <Engine/Color.h>
 #include <Math/Mathf.h>
+#include <algorithm>
 
 ImGUITest::ImGUITest(GLFWwindow* window)
     : m_window(window)
@@ -29,7 +32,7 @@ void ImGUITest::Init()
 
 void World::RenderUiGui()
 {
-
+    ImGui::End();
     // Fenêtre pour créer des entités
     ImGui::Begin("Create Cube");
     if (ImGui::Button("Create Cube##CreateCube"))
@@ -259,7 +262,7 @@ void World::CreateMeshCube(Mesh* meshObj, std::string nameEntity)
         return;
     }
     else
-    std::cout << "Success to create Transform Component for Cube." << std::endl;
+        std::cout << "Success to create Transform Component for Cube." << std::endl;
 
     // transformComponent->SetPosition(cubePosition);
     // transformComponent->SetScale(cubeScale);
@@ -273,9 +276,26 @@ void World::CreateMeshCube(Mesh* meshObj, std::string nameEntity)
         return;
     }
 
+
     // Configure le MeshRenderer avec des ressources
     Mesh* cubeMesh = meshObj;
+    
+    // Shader* shader = cubeEntity->AddComponent<Shader>();
+    // if (!shader)
+    // {
+    //     std::cerr << "Failed to create Shader Component for Cube." << std::endl;
+    //     return;
+    // }
+
     Shader* shader = AssetsManager::GetAsset<Shader>("BlinnPhongShader");
+
+    // Material* material = cubeEntity->AddComponent<Material>();
+    // if (!material)
+    // {
+    //     std::cerr << "Failed to create Material Component for Cube." << std::endl;
+    //     return;
+    // }
+
     Material* material = AssetsManager::GetAsset<Material>("Material0");
 
     if (!cubeMesh || !shader || !material)
@@ -305,7 +325,7 @@ void World::RenderComponentsUI()
 {
     // Fenêtre principale pour afficher les entités et leurs composants
     ImGui::Begin("Scene Components");
-
+    ImGui::BulletText("ENGINE SAIDOU");
     // Vérifie si des entités sont disponibles
     if (m_entities.empty())
     {
@@ -313,6 +333,9 @@ void World::RenderComponentsUI()
         ImGui::End();
         return;
     }
+
+    // Stocke l'entité à supprimer en dehors de la boucle
+    Entity* entityToDelete = nullptr;
 
     // Parcourt toutes les entités
     for (Entity* entity : m_entities)
@@ -353,22 +376,23 @@ void World::RenderComponentsUI()
 
                     if (Transform* transform = dynamic_cast<Transform*>(component))
                     {
+                        ImGui::Separator();
                         ImGui::Text("Transform:");
                         Vector3 position = transform->GetPosition();
                         Vector3 scale = transform->GetScale();
                         Quaternion rotation = transform->GetRotation();
+                        Vector3 localRotation = rotation.ToEulerAngle();
 
-                        ImGui::DragFloat3(("Position##TransformPosition_" + std::to_string(i)).c_str(), &position.m_x, 0.1f);
-                        ImGui::DragFloat3(("Scale##TransformScale_" + std::to_string(i)).c_str(), &scale.m_x, 0.1f);
-                        ImGui::DragFloat3(("Rotation##TransformRotation_" + std::to_string(i)).c_str(), &rotation.m_x, 0.1f);
-
-
+                        ImGui::DragFloat3(("Position##TransformPosition_" + std::to_string(i)).c_str(), &position.m_x, 0.01f);
                         transform->SetPosition(position);
+                        ImGui::DragFloat3(("Scale##TransformScale_" + std::to_string(i)).c_str(), &scale.m_x, 0.01f);
                         transform->SetScale(scale);
-                        transform->SetEulerAngles({rotation.m_x, rotation.m_y, rotation.m_z});
+                        ImGui::DragFloat3(("Rotation##TransformRotation_" + std::to_string(i)).c_str(), &localRotation.m_x, 0.01f);
+                        transform->SetEulerAngles(localRotation);
                     }
                     else if (Camera* camera = dynamic_cast<Camera*>(component))
                     {
+                        ImGui::Separator();
                         ImGui::Text("Camera:");
                         Vector3 position = camera->GetPosition();
                         Vector3 angles = camera->GetAngle();
@@ -389,24 +413,9 @@ void World::RenderComponentsUI()
                         camera->SetNear(_near);
                         camera->SetFar(_far);
                     }
-                    /* else if (Light* light = dynamic_cast<Light*>(component))
-                    {
-                        ImGui::Text("Light:");
-                        const char* lightTypeNames[] = {"Directional", "Point", "Spot"};
-
-                        int currentItem  = static_cast<int>(light->m_lightType);
-                        if(ImGui::Combo(("Light Type" + std::to_string(i)).c_str(), &currentItem, lightTypeNames, IM_ARRAYSIZE(lightTypeNames)))
-                        {
-                            Light::LightType o = static_cast<Light::LightType>(currentItem);
-                            light->SetTypeLight(o);
-                        }
-                        ImGui::ColorEdit4(("Ambient Color##LightAmbientColor_" + std::to_string(i)).c_str(), &light->m_ambiantColor.m_r);
-                        ImGui::ColorEdit4(("Specular Color##LightSpecularColor_" + std::to_string(i)).c_str(), &light->m_specularColor.m_r);
-                        ImGui::DragFloat(("Intensity##LightIntensity_" + std::to_string(i)).c_str(), &light->m_intensity, 0.1f);
-
-                    } */
                     else if (DirectionalLight* dLight = dynamic_cast<DirectionalLight*>(component))
                     {
+                        ImGui::Separator();
                         ImGui::Text("Directional Light:");
 
                         ImGui::ColorEdit4(("Ambient Color##LightAmbientColor_" + std::to_string(i)).c_str(), &dLight->m_ambiantColor.m_r);
@@ -418,6 +427,7 @@ void World::RenderComponentsUI()
                     }
                     else if (PointLight* pLight = dynamic_cast<PointLight*>(component))
                     {
+                        ImGui::Separator();
                         ImGui::Text("Point Light:");
 
                         ImGui::ColorEdit4(("Ambient Color##PointLightAmbientColor_" + std::to_string(i)).c_str(), &pLight->m_ambiantColor.m_r);
@@ -431,6 +441,7 @@ void World::RenderComponentsUI()
                     }
                     else if (SpotLight* sLight = dynamic_cast<SpotLight*>(component))
                     {
+                        ImGui::Separator();
                         ImGui::Text("Spot Light:");
 
                         ImGui::ColorEdit4(("Ambient Color##SpotLightAmbientColor_" + std::to_string(i)).c_str(), &sLight->m_ambiantColor.m_r);
@@ -447,6 +458,7 @@ void World::RenderComponentsUI()
                     }
                     else if (MeshRenderer* meshRenderer = dynamic_cast<MeshRenderer*>(component))
                     {
+                        ImGui::Separator();
                         ImGui::Text("MeshRenderer: %s", typeid(*meshRenderer).name());
 
                         const Mesh* mesh = meshRenderer->GetMesh();
@@ -595,6 +607,10 @@ void World::RenderComponentsUI()
                                 meshRenderer->SetPolygonMode(polygonMode ? PolygonMode::Fill : PolygonMode::Line);
                                 meshRenderer->SetMesh(MeshUtilities::CreateProceduralTerrain("Modified Terrain Procedural", width, height, tileSize, maxHeight, noiseScale, noiseStrength));
                             }
+                            else if(meshRenderer->GetMaterial())
+                            {
+                                ShowMaterialUI(meshRenderer);
+                            }
                         }
                     }
                     else
@@ -605,10 +621,76 @@ void World::RenderComponentsUI()
                     ImGui::PopID();
                 }
             }
+
+            // Ajout du bouton pour supprimer l'entité
+            ImGui::Separator();
+            if (ImGui::Button(("Delete Entity##" + std::to_string(reinterpret_cast<std::uintptr_t>(entity))).c_str()))
+            {
+                entityToDelete = entity;
+            }
         }
 
         ImGui::PopID();  // Fin de PushID pour l'entité
     }
 
+    // Supprime l'entité après la boucle pour éviter la modification du conteneur pendant l'itération
+    if (entityToDelete)
+    {
+        m_entities.erase(entityToDelete);
+        delete entityToDelete; // Suppression propre de l'objet
+    }
     ImGui::End();
+}
+
+// Fonction d'affichage UI pour le matériau du MeshRenderer
+void World::ShowMaterialUI(MeshRenderer* meshRenderer)
+{
+    if (!meshRenderer) return;
+
+    Material* material = const_cast<Material*>(meshRenderer->GetMaterial());
+    if (!material) return;
+
+    // Affichage et modification de la couleur ambiante
+    float ambientColor[4] = { material->m_ambientColor.m_r, material->m_ambientColor.m_g, material->m_ambientColor.m_b, material->m_ambientColor.m_a };
+    if (ImGui::ColorEdit4("Ambient Color", ambientColor))
+    {
+        material->m_ambientColor = Color(ambientColor[0], ambientColor[1], ambientColor[2], ambientColor[3]);
+    }
+
+    // Affichage et modification de la couleur diffuse
+    float diffuseColor[4] = { material->m_diffuseColor.m_r, material->m_diffuseColor.m_g, material->m_diffuseColor.m_b, material->m_diffuseColor.m_a };
+    if (ImGui::ColorEdit4("Diffuse Color", diffuseColor))
+    {
+        material->m_diffuseColor = Color(diffuseColor[0], diffuseColor[1], diffuseColor[2], diffuseColor[3]);
+    }
+
+    // Affichage et modification de la couleur spéculaire
+    float specularColor[4] = { material->m_specularColor.m_r, material->m_specularColor.m_g, material->m_specularColor.m_b, material->m_specularColor.m_a };
+    if (ImGui::ColorEdit4("Specular Color", specularColor))
+    {
+        material->m_specularColor = Color(specularColor[0], specularColor[1], specularColor[2], specularColor[3]);
+    }
+
+    // Modification de la brillance
+    ImGui::SliderFloat("Shininess", &material->m_shininess, 1.0f, 128.0f);
+
+    if(ImGui::CollapsingHeader("Information: "))
+    {
+        // Affichage des noms de textures (si disponibles)
+        if (material->m_ambientTexture)
+            ImGui::Text("Ambient Texture: Loaded");
+        else
+            ImGui::Text("Ambient Texture: None");
+
+        if (material->m_diffuseTexture)
+            ImGui::Text("Diffuse Texture: Loaded");
+        else
+            ImGui::Text("Diffuse Texture: None");
+
+        if (material->m_specularTexture)
+            ImGui::Text("Specular Texture: Loaded");
+        else
+            ImGui::Text("Specular Texture: None");
+    }
+
 }
