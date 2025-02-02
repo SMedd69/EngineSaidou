@@ -13,5 +13,7 @@
 
             static std::string OpenFile();
             static std::string SaveFile();
+
+            static void DisplayFileBrowser(const std::string& directory);
     };
 #endif

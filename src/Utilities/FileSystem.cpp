@@ -1,5 +1,7 @@
 #include <Utilities/FileSystem.h>
 #include "FileSystem.h"
+#include <filesystem>
+#include <iostream>
 
 std::string FileSystem::get_file_content(std::string filename)
 {
@@ -49,4 +51,14 @@ std::string FileSystem::SaveFile()
     }
 
     return filePath;
+}
+
+void FileSystem::DisplayFileBrowser(const std::string& directory) {
+    for (const auto& entry : std::filesystem::directory_iterator(directory)) {
+        if (entry.is_regular_file()) {
+            if (ImGui::Selectable(entry.path().filename().string().c_str())) {
+                std::cout << "Fichier sélectionné : " << entry.path() << std::endl;
+            }
+        }
+    }
 }
